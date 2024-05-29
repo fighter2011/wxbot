@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/yqchilde/wxbot/framework/uos"
 	"time"
 
 	"github.com/spf13/viper"
@@ -41,6 +42,14 @@ func main() {
 			if ping := net.PingConn(ipPort, time.Second*10); !ping {
 				c.SetConnHookStatus(false)
 				log.Warn("[main] 无法连接到VLW框架，网络无法Ping通，请检查网络")
+			}
+		}
+	case "UOS":
+		f = robot.IFramework(uos.New(c.BotWxId))
+		if ipPort, err := net.CheckoutIpPort(c.Framework.ApiUrl); err == nil {
+			if ping := net.PingConn(ipPort, time.Second*10); !ping {
+				c.SetConnHookStatus(false)
+				log.Warn("[main] 无法连接到UOS框架，网络无法Ping通，请检查网络")
 			}
 		}
 	default:

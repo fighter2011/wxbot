@@ -21,8 +21,8 @@ serverAddress: "http://192.168.31.12:9528"
 # 接入框架配置
 framework:
   # 框架选择，可选 Dean、VLW
-  name: "Dean"
+  name: "UOS"
   # wxbot主动请求微信框架的地址，比如：http://[运行Dean的服务器ip]:[Dean的HTTP端口]
-  apiUrl: "http://192.168.31.8:9527"
+  apiUrl: "https://wx.h.zmlz.net"
   # VX框架HTTP鉴权Token (Dean目前没有，vlw需要)
   apiToken: ""
