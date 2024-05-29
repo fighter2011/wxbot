@@ -4,17 +4,39 @@ type RobotInfoResp struct {
 	Code       int    `json:"Code"`
 	Result     string `json:"Result"`
 	ReturnJson struct {
-		Number int `json:"Number"`
-		Data   []struct {
-			Pid                      int    `json:"pid"`
-			Username                 string `json:"username"`
-			Wxid                     string `json:"wxid"`
-			WxNum                    string `json:"wx_num"`
-			WxHeadimgurl             string `json:"wx_headimgurl"`
-			EnterpriseWechat         int    `json:"Enterprise wechat"`
-			EnterpriseWechatClientId int    `json:"Enterprise wechat clientId"`
-		} `json:"data"`
-	} `json:"ReturnJson"`
+		HideInputBarFlag  int
+		StarFriend        int
+		Sex               int
+		AppAccountFlag    int
+		VerifyFlag        int
+		ContactFlag       int
+		WebWxPluginSwitch int
+		HeadImgFlag       int
+		SnsFlag           int
+		IsOwner           int
+		MemberCount       int
+		ChatRoomId        int
+		UniFriend         int
+		OwnerUin          int
+		Statues           int
+		AttrStatus        int64
+		Uin               int64
+		Province          string
+		City              string
+		Alias             string
+		DisplayName       string
+		KeyWord           string
+		EncryChatRoomId   string
+		UserName          string
+		NickName          string
+		HeadImgUrl        string
+		RemarkName        string
+		PYInitial         string
+		PYQuanPin         string
+		RemarkPYInitial   string
+		RemarkPYQuanPin   string
+		Signature         string
+	} `json:"data"`
 }
 
 // ObjectInfoResp 对象可以是好友、群、公众号
@@ -49,16 +71,39 @@ type FriendsListResp struct {
 	Code       int    `json:"Code"`
 	Result     string `json:"Result"`
 	ReturnJson []struct {
-		WxNum    string `json:"wx_num"`
-		Avatar   string `json:"avatar"`
-		City     string `json:"city"`
-		Country  string `json:"country"`
-		Nickname string `json:"nickname"`
-		Province string `json:"province"`
-		Note     string `json:"note"`
-		Sex      int    `json:"sex"`
-		Wxid     string `json:"wxid"`
-	} `json:"ReturnJson"`
+		HideInputBarFlag  int
+		StarFriend        int
+		Sex               int
+		AppAccountFlag    int
+		VerifyFlag        int
+		ContactFlag       int
+		WebWxPluginSwitch int
+		HeadImgFlag       int
+		SnsFlag           int
+		IsOwner           int
+		MemberCount       int
+		ChatRoomId        int
+		UniFriend         int
+		OwnerUin          int
+		Statues           int
+		AttrStatus        int64
+		Uin               int64
+		Province          string
+		City              string
+		Alias             string
+		DisplayName       string
+		KeyWord           string
+		EncryChatRoomId   string
+		UserName          string
+		NickName          string
+		HeadImgUrl        string
+		RemarkName        string
+		PYInitial         string
+		PYQuanPin         string
+		RemarkPYInitial   string
+		RemarkPYQuanPin   string
+		Signature         string
+	} `json:"data"`
 }
 
 // GroupListResp 获取群组列表响应

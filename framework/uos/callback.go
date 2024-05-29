@@ -8,33 +8,18 @@ import (
 	"net/http"
 )
 
-const (
-	MsgTypeText           int = 1     // 文本消息
-	MsgTypeImage          int = 3     // 图片消息
-	MsgTypeVoice          int = 34    // 语音消息
-	MsgTypeVerify         int = 37    // 认证消息
-	MsgTypePossibleFriend int = 40    // 好友推荐消息
-	MsgTypeShareCard      int = 42    // 名片消息
-	MsgTypeVideo          int = 43    // 视频消息
-	MsgTypeEmoticon       int = 47    // 表情消息
-	MsgTypeLocation       int = 48    // 地理位置消息
-	MsgTypeApp            int = 49    // APP消息
-	MsgTypeVoip           int = 50    // VOIP消息
-	MsgTypeVoipNotify     int = 52    // VOIP结束消息
-	MsgTypeVoipInvite     int = 53    // VOIP邀请
-	MsgTypeMicroVideo     int = 62    // 小视频消息
-	MsgTypeSys            int = 10000 // 系统消息
-	MsgTypeRecalled       int = 10002 // 消息撤回
-)
-
 type Framework struct {
 	BotWxId  string // 机器人微信ID
 	ApiUrl   string // http api地址
 	ApiToken string // http api鉴权token
 }
 
-func New(botWxId string) *Framework {
-	return &Framework{}
+func New(botWxId, apiUrl, apiToken string) *Framework {
+	return &Framework{
+		BotWxId:  botWxId,
+		ApiUrl:   apiUrl,
+		ApiToken: apiToken,
+	}
 }
 
 func (f *Framework) Callback(ctx *gin.Context, handler func(*robot.Event, robot.IFramework)) {

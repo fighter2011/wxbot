@@ -45,13 +45,13 @@ func main() {
 			}
 		}
 	case "UOS":
-		f = robot.IFramework(uos.New(c.BotWxId))
-		if ipPort, err := net.CheckoutIpPort(c.Framework.ApiUrl); err == nil {
-			if ping := net.PingConn(ipPort, time.Second*10); !ping {
-				c.SetConnHookStatus(false)
-				log.Warn("[main] 无法连接到UOS框架，网络无法Ping通，请检查网络")
-			}
-		}
+		f = robot.IFramework(uos.New(c.BotWxId, c.Framework.ApiUrl, c.Framework.ApiToken))
+		//if ipPort, err := net.CheckoutIpPort(c.Framework.ApiUrl); err == nil {
+		//	if ping := net.PingConn(ipPort, time.Second*10); !ping {
+		//		c.SetConnHookStatus(false)
+		//		log.Warn("[main] 无法连接到UOS框架，网络无法Ping通，请检查网络")
+		//	}
+		//}
 	default:
 		log.Fatalf("[main] 请在配置文件中指定机器人框架后再启动")
 	}

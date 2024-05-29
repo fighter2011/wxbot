@@ -39,7 +39,7 @@ func NewRequest() *req.Client {
 				resp.Err = fmt.Errorf("解析Response失败, error: %s", err.Error())
 				return nil
 			}
-			if dataResp.Code != 0 {
+			if dataResp.Code != 200 {
 				resp.Err = fmt.Errorf(resp.String())
 				return nil
 			}

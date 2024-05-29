@@ -41,7 +41,7 @@ func Run(c *Config, f IFramework) {
 	if c.connHookStatus {
 		bot.self.Init()
 		for i := range c.SuperUsers {
-			if bot.self.friends.GetByWxId(c.SuperUsers[i]) == nil {
+			if bot.self.friends.GetByNick(c.SuperUsers[i]) == nil {
 				log.Warnf("[robot] 您设置的管理员[%s]并不是您的好友，请修改config.yaml", c.SuperUsers[i])
 			}
 		}
