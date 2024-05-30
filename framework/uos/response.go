@@ -124,25 +124,40 @@ type GroupListResp struct {
 type GroupMemberListResp struct {
 	Code       int    `json:"Code"`
 	Result     string `json:"Result"`
-	ReturnJson struct {
-		GroupWxid     string `json:"group_wxid"`
-		GroupName     string `json:"group_name"`
-		Count         int    `json:"count"`
-		OwnerWxid     string `json:"owner_wxid"`
-		OwnerNickname string `json:"owner_nickname"`
-		MemberList    []struct {
-			WxNum         string `json:"wx_num"`
-			Avatar        string `json:"avatar"`
-			City          string `json:"city"`
-			Country       string `json:"country"`
-			GroupNickname string `json:"group_nickname"`
-			Nickname      string `json:"nickname"`
-			Province      string `json:"province"`
-			Remark        string `json:"remark"`
-			Sex           int    `json:"sex"`
-			Wxid          string `json:"wxid"`
-		} `json:"member_list"`
-	} `json:"ReturnJson"`
+	ReturnJson []struct {
+		HideInputBarFlag  int
+		StarFriend        int
+		Sex               int
+		AppAccountFlag    int
+		VerifyFlag        int
+		ContactFlag       int
+		WebWxPluginSwitch int
+		HeadImgFlag       int
+		SnsFlag           int
+		IsOwner           int
+		MemberCount       int
+		ChatRoomId        int
+		UniFriend         int
+		OwnerUin          int
+		Statues           int
+		AttrStatus        int64
+		Uin               int64
+		Province          string
+		City              string
+		Alias             string
+		DisplayName       string
+		KeyWord           string
+		EncryChatRoomId   string
+		UserName          string
+		NickName          string
+		HeadImgUrl        string
+		RemarkName        string
+		PYInitial         string
+		PYQuanPin         string
+		RemarkPYInitial   string
+		RemarkPYQuanPin   string
+		Signature         string
+	} `json:"data"`
 }
 
 // SubscriptionListResp 获取订阅号列表响应

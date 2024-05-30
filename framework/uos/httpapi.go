@@ -15,10 +15,26 @@ import (
 )
 
 const (
-	URL_ROBOT_INFO  string = "/api/v1/robot/info"
-	URL_LIST_FRIEND string = "/api/v1/robot/friends/list"
-	URL_LIST_GRUOP  string = "/api/v1/robot/group/member/list"
-	URL_LIST_MP     string = "/api/v1/robot/mps/list"
+	UrlRobotInfo        string = "/api/v1/robot/info"
+	UrlListFriend       string = "/api/v1/robot/friends/list"
+	UrlListGroup        string = "/api/v1/robot/group/member/list"
+	UrlListGroupMembers string = "/api/v1/robot/group/member/list"
+	UrlListMp           string = "/api/v1/robot/mps/list"
+	UrlTextSend         string = "/api/v1/robot/text/send"
+	UrlImageSend        string = "/api/v1/robot/image/send"
+	UrlFileSend         string = "/api/v1/robot/file/send"
+	UrlMusicSend        string = "/api/v1/robot/music/send"
+	UrlEmojiSend        string = "/api/v1/robot/emoji/send"
+	UrlInviteUserGroup  string = "/api/v1/robot/group/invite"
+	UrlAgreeUserVerify  string = "/api/v1/robot/friend/verify"
+)
+
+type FileType int
+
+const (
+	IMAGE FileType = iota
+	FILE
+	VIDEO
 )
 
 func (f *Framework) msgFormat(msg string) string {
@@ -46,7 +62,7 @@ func (f *Framework) msgFormat(msg string) string {
 }
 
 func (f *Framework) GetRobotInfo() (*robot.User, error) {
-	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, URL_ROBOT_INFO)
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlRobotInfo)
 	var resp RobotInfoResp
 	if err := NewRequest().Get(apiUrl).SetSuccessResult(&resp).Do().Err; err != nil {
 		log.Errorf("[UOS] GetRobotInfo error: %v", err)
@@ -71,10 +87,10 @@ func (f *Framework) GetObjectInfo(wxId string) (*robot.User, error) {
 }
 
 func (f *Framework) GetFriends(isRefresh bool) ([]*robot.User, error) {
-	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, URL_LIST_FRIEND)
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlListFriend)
 	var resp FriendsListResp
 	if err := NewRequest().Get(apiUrl).SetSuccessResult(&resp).Do().Err; err != nil {
-		log.Errorf("[UOS] GetRobotInfo error: %v", err)
+		log.Errorf("[UOS] GetFriends error: %v", err)
 		return nil, err
 	}
 	var friendsInfoList []*robot.User
@@ -108,10 +124,10 @@ func (f *Framework) GetFriends(isRefresh bool) ([]*robot.User, error) {
 }
 
 func (f *Framework) GetGroups(isRefresh bool) ([]*robot.User, error) {
-	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, URL_LIST_GRUOP)
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlListGroup)
 	var resp FriendsListResp
 	if err := NewRequest().Get(apiUrl).SetSuccessResult(&resp).Do().Err; err != nil {
-		log.Errorf("[UOS] GetRobotInfo error: %v", err)
+		log.Errorf("[UOS] GetGroups error: %v", err)
 		return nil, err
 	}
 	var friendsInfoList []*robot.User
@@ -136,12 +152,28 @@ func (f *Framework) GetGroups(isRefresh bool) ([]*robot.User, error) {
 }
 
 func (f *Framework) GetGroupMembers(groupWxId string, isRefresh bool) ([]*robot.User, error) {
-	//todo
-	return nil, nil
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlListGroupMembers)
+	var resp GroupMemberListResp
+	if err := NewRequest().Get(apiUrl).SetSuccessResult(&resp).Do().Err; err != nil {
+		log.Errorf("[UOS] GetGroupMembers error: %v", err)
+		return nil, err
+	}
+	if err := NewRequest().Get(apiUrl).SetSuccessResult(&resp).Do().Err; err != nil {
+		log.Errorf("[UOS] GetGroupMembers error: %v", err.Error())
+		return nil, err
+	}
+	var groupMemberInfoList []*robot.User
+	for _, res := range resp.ReturnJson {
+		groupMemberInfoList = append(groupMemberInfoList, &robot.User{
+			WxId: res.UserName,
+			Nick: res.NickName,
+		})
+	}
+	return groupMemberInfoList, nil
 }
 
 func (f *Framework) GetMPs(isRefresh bool) ([]*robot.User, error) {
-	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, URL_LIST_MP)
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlListMp)
 	var resp FriendsListResp
 	if err := NewRequest().Get(apiUrl).SetSuccessResult(&resp).Do().Err; err != nil {
 		log.Errorf("[UOS] GetRobotInfo error: %v", err)
@@ -173,88 +205,41 @@ func (f *Framework) GetMemePictures(msg *robot.Message) string {
 }
 
 func (f *Framework) SendText(toWxId, text string) error {
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlFileSend)
+	payload := map[string]interface{}{
+		"wxId":    toWxId,
+		"content": text,
+	}
+
+	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
+		log.Errorf("[UOS] SendText error: %v", err.Error())
+		return err
+	}
 	return nil
 }
 
 func (f *Framework) SendTextAndAt(toGroupWxId, toWxId, toWxName, text string) error {
-	apiUrl := fmt.Sprintf("%s/DaenWxHook/client/", f.ApiUrl)
-	payload := map[string]interface{}{
-		"type": "Q0001",
-		"data": map[string]interface{}{
-			"wxid": toGroupWxId,
-			"msg":  fmt.Sprintf("[@,wxid=%s,nick=%s,isAuto=true] %s", toWxId, toWxName, f.msgFormat(text)),
-		},
-	}
-
-	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
-		log.Errorf("[Dean] SendTextAndAt error: %v", err.Error())
-		return err
-	}
-	return nil
+	panic("Not Support Yet!")
 }
 
 func (f *Framework) SendImage(toWxId, path string) error {
-	apiUrl := fmt.Sprintf("%s/DaenWxHook/client/", f.ApiUrl)
-	payload := map[string]interface{}{
-		"type": "Q0010",
-		"data": map[string]interface{}{
-			"wxid": toWxId,
-			"path": path,
-		},
-	}
-
-	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
-		log.Errorf("[Dean] SendImage error: %v", err.Error())
-		return err
-	}
-	return nil
+	return f.sendFile(toWxId, []string{path}, VIDEO)
 }
 
 func (f *Framework) SendShareLink(toWxId, title, desc, imageUrl, jumpUrl string) error {
-	apiUrl := fmt.Sprintf("%s/DaenWxHook/client/", f.ApiUrl)
-	payload := map[string]interface{}{
-		"type": "Q0012",
-		"data": map[string]interface{}{
-			"wxid":    toWxId,
-			"title":   title,
-			"content": desc,
-			"jumpUrl": jumpUrl,
-			"path":    imageUrl,
-		},
-	}
-
-	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
-		log.Errorf("[Dean] SendShareLink error: %v", err.Error())
-		return err
-	}
-	return nil
+	panic("Not Support Yet!")
 }
 
 func (f *Framework) SendFile(toWxId, path string) error {
-	apiUrl := fmt.Sprintf("%s/DaenWxHook/client/", f.ApiUrl)
-	payload := map[string]interface{}{
-		"type": "Q0011",
-		"data": map[string]interface{}{
-			"wxid": toWxId,
-			"path": path,
-		},
-	}
-
-	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
-		log.Errorf("[Dean] SendFile error: %v", err.Error())
-		return err
-	}
-	return nil
+	return f.sendFile(toWxId, []string{path}, FILE)
 }
 
 func (f *Framework) SendVideo(toWxId, path string) error {
-	log.Errorf("[Dean] SendVideo not support")
-	return errors.New("SendVideo not support")
+	return f.sendFile(toWxId, []string{path}, VIDEO)
 }
 
 func (f *Framework) SendEmoji(toWxId, path string) error {
-	log.Errorf("[Dean] SendEmoji not support")
-	return errors.New("SendEmoji not support")
+	return f.SendText(toWxId, path)
 }
 
 func (f *Framework) SendMusic(toWxId, name, author, app, jumpUrl, musicUrl, coverUrl string) error {
@@ -280,24 +265,7 @@ func (f *Framework) SendMusic(toWxId, name, author, app, jumpUrl, musicUrl, cove
 }
 
 func (f *Framework) SendMiniProgram(toWxId, ghId, title, content, imagePath, jumpPath string) error {
-	apiUrl := fmt.Sprintf("%s/DaenWxHook/client/", f.ApiUrl)
-	payload := map[string]interface{}{
-		"type": "Q0013",
-		"data": map[string]interface{}{
-			"wxid":     toWxId,
-			"title":    title,
-			"content":  content,
-			"jumpPath": jumpPath,
-			"gh":       ghId,
-			"path":     imagePath,
-		},
-	}
-
-	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
-		log.Errorf("[Dean] SendMiniProgram error: %v", err.Error())
-		return err
-	}
-	return nil
+	panic("Not Support Yet!")
 }
 
 func (f *Framework) SendMessageRecord(toWxId, title string, dataList []map[string]interface{}) error {
@@ -331,5 +299,20 @@ func (f *Framework) AgreeFriendVerify(v3, v4, scene string) error {
 
 func (f *Framework) InviteIntoGroup(groupWxId, wxId string, typ int) error {
 	//todo
+	return nil
+}
+
+func (f *Framework) sendFile(toWxId string, urls []string, fileType FileType) error {
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlImageSend)
+	payload := map[string]interface{}{
+		"wxId":     toWxId,
+		"urls":     urls,
+		"fileType": fileType,
+	}
+
+	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
+		log.Errorf("[UOS] SendFile error: %v", err.Error())
+		return err
+	}
 	return nil
 }
