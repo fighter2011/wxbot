@@ -2,8 +2,10 @@ package uos
 
 import (
 	"bytes"
+	"encoding/xml"
 	"errors"
 	"fmt"
+	"github.com/yqchilde/wxbot/framework/dean"
 	"strconv"
 	"strings"
 	"unicode"
@@ -21,10 +23,7 @@ const (
 	UrlListGroupMembers string = "/api/v1/robot/group/member/list"
 	UrlListMp           string = "/api/v1/robot/mps/list"
 	UrlTextSend         string = "/api/v1/robot/text/send"
-	UrlImageSend        string = "/api/v1/robot/image/send"
 	UrlFileSend         string = "/api/v1/robot/file/send"
-	UrlMusicSend        string = "/api/v1/robot/music/send"
-	UrlEmojiSend        string = "/api/v1/robot/emoji/send"
 	UrlInviteUserGroup  string = "/api/v1/robot/group/invite"
 	UrlAgreeUserVerify  string = "/api/v1/robot/friend/verify"
 )
@@ -201,11 +200,15 @@ func (f *Framework) GetMPs(isRefresh bool) ([]*robot.User, error) {
 }
 
 func (f *Framework) GetMemePictures(msg *robot.Message) string {
-	return ""
+	var emoji dean.EmojiXml
+	if err := xml.Unmarshal([]byte(msg.Content), &emoji); err != nil {
+		return ""
+	}
+	return emoji.Emoji.Cdnurl
 }
 
 func (f *Framework) SendText(toWxId, text string) error {
-	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlFileSend)
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlTextSend)
 	payload := map[string]interface{}{
 		"wxId":    toWxId,
 		"content": text,
@@ -219,7 +222,7 @@ func (f *Framework) SendText(toWxId, text string) error {
 }
 
 func (f *Framework) SendTextAndAt(toGroupWxId, toWxId, toWxName, text string) error {
-	panic("Not Support Yet!")
+	return f.SendText(toGroupWxId, text)
 }
 
 func (f *Framework) SendImage(toWxId, path string) error {
@@ -303,7 +306,7 @@ func (f *Framework) InviteIntoGroup(groupWxId, wxId string, typ int) error {
 }
 
 func (f *Framework) sendFile(toWxId string, urls []string, fileType FileType) error {
-	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlImageSend)
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlFileSend)
 	payload := map[string]interface{}{
 		"wxId":     toWxId,
 		"urls":     urls,

@@ -38,6 +38,8 @@ func Run(c *Config, f IFramework) {
 
 	bot = &Bot{config: c, framework: f}
 	bot.self = &Self{bot: bot, User: &User{}}
+	// 进行框架的基本初始化
+	bot.framework.Init()
 	if c.connHookStatus {
 		bot.self.Init()
 		for i := range c.SuperUsers {
@@ -360,4 +362,11 @@ func (b *Bot) GetSelf() (*Self, error) {
 		return nil, errors.New("bot self is nil")
 	}
 	return b.self, nil
+}
+
+func (b *Bot) GetBotWxId() string {
+	if b.self == nil {
+		return ""
+	}
+	return b.self.WxId
 }

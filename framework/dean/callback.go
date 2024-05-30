@@ -35,6 +35,10 @@ func New(botWxId, apiUrl, apiToken string) *Framework {
 	}
 }
 
+func (f *Framework) Init() {
+
+}
+
 //http://192.168.31.5:9528/wxbot/callback
 // callBackUrl=http://192.168.31.5:9528/wxbot/callback&port=9527&decryptImg=1
 

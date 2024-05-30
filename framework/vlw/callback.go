@@ -40,6 +40,10 @@ func New(botWxId, apiUrl, apiToken string) *Framework {
 	}
 }
 
+func (f *Framework) Init() {
+
+}
+
 func (f *Framework) Callback(ctx *gin.Context, handler func(*robot.Event, robot.IFramework)) {
 	recv, err := ctx.GetRawData()
 	if err != nil {

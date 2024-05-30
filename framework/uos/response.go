@@ -39,33 +39,6 @@ type RobotInfoResp struct {
 	} `json:"data"`
 }
 
-// ObjectInfoResp 对象可以是好友、群、公众号
-type ObjectInfoResp struct {
-	Code       int    `json:"Code"`
-	Result     string `json:"Result"`
-	ReturnJson struct {
-		Data struct {
-			Account     string `json:"account"`
-			Avatar      string `json:"avatar"`
-			City        string `json:"city"`
-			Country     string `json:"country"`
-			Nickname    string `json:"nickname"`
-			Province    string `json:"province"`
-			Remark      string `json:"remark"`
-			Sex         int    `json:"sex"`
-			Signature   string `json:"signature"`
-			SmallAvatar string `json:"small_avatar"`
-			SnsPic      string `json:"sns_pic"`
-			SourceType  int    `json:"source_type"`
-			Status      int    `json:"status"`
-			V1          string `json:"v1"`
-			V2          string `json:"v2"`
-			Wxid        string `json:"wxid"`
-		} `json:"data"`
-		Type int `json:"type"`
-	} `json:"ReturnJson"`
-}
-
 // FriendsListResp 获取好友列表响应
 type FriendsListResp struct {
 	Code       int    `json:"Code"`

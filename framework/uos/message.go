@@ -1,6 +1,9 @@
 package uos
 
-import "strings"
+import (
+	"github.com/yqchilde/wxbot/engine/robot"
+	"strings"
+)
 
 // 消息类型
 const (
@@ -104,6 +107,7 @@ type Message struct {
 	ToUserName           string         `json:"toUserName"`
 	Url                  string         `json:"url"`
 	RecommendInfo        RecommendInfo  `json:"recommendInfo"`
+	AttachmentUrl        string         `json:"attachmentUrl"`
 	//senderUserNameInGroup string                 `json:"senderUserNameInGroup"`
 	//item                  map[string]interface{} `json:"item"`
 }
@@ -220,4 +224,24 @@ func (m *Message) StatusNotify() bool {
 // HasFile 判断消息是否为文件类型的消息
 func (m *Message) HasFile() bool {
 	return m.IsPicture() || m.IsVoice() || m.IsVideo() || (m.IsMedia() && m.AppMsgType == AppMsgTypeAttach) || m.IsEmoticon()
+}
+
+// IsSendBySelf 判断消息是否由自己发送
+func (m *Message) IsSendBySelf() bool {
+	return m.FromUserName == robot.GetBot().GetBotWxId()
+}
+
+// IsSendByFriend 判断消息是否由好友发送
+func (m *Message) IsSendByFriend() bool {
+	return !m.IsSendByGroup() && strings.HasPrefix(m.FromUserName, "@") && !m.IsSendBySelf()
+}
+
+// IsSendByGroup 判断消息是否由群组发送
+func (m *Message) IsSendByGroup() bool {
+	return strings.HasPrefix(m.FromUserName, "@@") || (m.IsSendBySelf() && strings.HasPrefix(m.ToUserName, "@@"))
+}
+
+// IsSelfSendToGroup 判断消息是否由自己发送到群组
+func (m *Message) IsSelfSendToGroup() bool {
+	return m.IsSendBySelf() && strings.HasPrefix(m.ToUserName, "@@")
 }

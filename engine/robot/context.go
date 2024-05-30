@@ -38,6 +38,8 @@ func (ctx *Ctx) MessageString() string {
 				case "VLW", "vlw":
 					regex := regexp.MustCompile(`\[at=.*\]\s*`)
 					ctx.message = regex.ReplaceAllString(ctx.Event.Message.Content, "")
+				case "UOS":
+
 				}
 			}
 		}

@@ -13,6 +13,9 @@ import (
 
 // IFramework 这是接入框架所定义的接口
 type IFramework interface {
+	// Init 初始化
+	Init()
+
 	// Callback 这是消息回调方法，vx框架回调消息转发给该Server
 	Callback(*gin.Context, func(*Event, IFramework))
 
