@@ -1,0 +1,483 @@
+图片消息:
+{
+    "AppInfo": {
+        "Type": 0,
+        "AppID": ""
+    },
+    "AppMsgType": 0,
+    "HasProductId": 0,
+    "ImgHeight": 120,
+    "ImgStatus": 2,
+    "ImgWidth": 90,
+    "ForwardFlag": 0,
+    "MsgType": 3,
+    "Status": 3,
+    "StatusNotifyCode": 0,
+    "SubMsgType": 0,
+    "VoiceLength": 0,
+    "CreateTime": 1716957642,
+    "NewMsgId": 667787994364470997,
+    "PlayLength": 0,
+    "MediaId": "",
+    "MsgId": "667787994364470997",
+    "EncryFileName": "",
+    "FileName": "",
+    "FileSize": "",
+    "Content": "@b935ec0f50c6dcaba78b15d64c6f33f1778cef1b7351d4d535deab5a064c70ce6a83cbf1bd36e9482ae38931e8e25210b449bf79fb57450dd5da8c5ce028ccea8ba518dbe623c54ebe5baf47b572cd6b41cdf26e9a1d4d05b084af88c7d636abcb8bf3fbe2771d81988aefeba4dd3b83859e5b730b78556eda1b9ea98623738afed777e9cdecc887fc61bf1bb8e9df5078ff43e4929150859f3018da5fc74bd28f2926aa31648c2343d1ff3acd69197236a05f3d158ca711bb9248dce375c30984ec4565a76081251400cab82c762ac195037f64a36e5c857dbfb5ec117dc690fcd87ef17388953e458c431857cf6c6f45bc49c6dc6bc40379a58e3e732a157558351e46ebbbd125093d602a814424e460a2486926e1d4df25359e1272211b1d6855026b4a770a272ec66db8967a4186bb123cd3eeff4eda3cbe7b0c076e9b4c6a6dedb5c798c5e47e480ea554af0bea7be4031ff6abefb05032cfb61f64f2dc727e52b973d48580f3802d8c152d922fd68549cd93ed8d412773454806d6183f777deff38659033de5eec65d0470cb525998a877e72785c028308809f6f1bded2bb8d3ff29e1c67068efc04d1c03044d93872dd62ae1c209b02ccd54dc566122fc643dd4b362334f42f9ad4a3aa54f4ce9bf7399a9d56a8dc7e7bbce1af6d71787ed62735e0e804120bb979a87c9c76c3deff08f475364c5fcab10dc3f661897dd63664622951d421fb06fbe7bac10c6619a6fff438ce7064f4362d0d5c3ae9bdb90acedb0819f377a0bee8c0ab548494cb68509e7316d9eaa30ca50d220d46e6d59c51a901088d1c4abff36b5065c4dc9c99c58d04aa0bf3a75d9b0be1318606c3032ee9a8272292252095c2dd8dc3c7643dd360da97876bd4a2dc7b12f6df73b35cd7bbdad88fa86a03668509a4b20fa6ce3af2c2fa9892727109287e23a5ba983abbbd416062b8be2cc81caa99ddbcbdd6f364bdaad426a0383acf7f6d78fb44575b247dd427a4eea051b03fbcb422faf82208ca438fa3cabfe36143513654acebdb29f9938cde0f8d5bf398fe40642d2b7441808810d4ff968b23e0025c97cd102aacb0445408ace36c6798ce9f4c67b1be8751f52a888721241d3261f8b8833f4453784c56070faad27b6913e09d1be83469870282965fa29d3ad7e725a33ff1e9fccb94270b1f10c7f6f7fb1339abf031cfac91c0a7d8e9be612a6a6c9bdc92b0c1ac3fc1ea259e51807bac2451932c7f1663bcc7825fda0aff1319448",
+    "FromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "OriContent": "",
+    "StatusNotifyUserName": "",
+    "Ticket": "",
+    "ToUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "Url": "",
+    "RecommendInfo": {
+        "OpCode": 0,
+        "Scene": 0,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 0,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": ""
+    }
+}
+
+文件消息
+
+{
+    "AppInfo": {
+        "Type": 0,
+        "AppID": ""
+    },
+    "AppMsgType": 6,
+    "HasProductId": 0,
+    "ImgHeight": 0,
+    "ImgStatus": 1,
+    "ImgWidth": 0,
+    "ForwardFlag": 0,
+    "MsgType": 49,
+    "Status": 3,
+    "StatusNotifyCode": 0,
+    "SubMsgType": 0,
+    "VoiceLength": 0,
+    "CreateTime": 1716957716,
+    "NewMsgId": 4922284211088510411,
+    "PlayLength": 0,
+    "MediaId": "@crypt_378a6822_86ef4e5ec906a8919e9e933b1b25de22c78352233fa4f96dfd4fde75d67922820439ffc925a4b95ab21ba0b0658acaef7e277be6b2d97b80c748c36845b088291da61e6ee69f48179c59f58424f2903116c6bcfeb08c60c7527e5611950adca1d865553fde611b10ce31bf4eff6a2f8e8e4743b19bb8fad448b02f4d10f1a929e954379a90d59f1103d6b9449731b0cd875a34c4486669140a1bd2e997584fea8c7b6785197e19fb968ec7030fa28a6fe98becf75dfb7614dbb95a872ed20ab1edf616559ed8fbdb1e416a1c14ce9a254ed2b3b92febb72f5aa344355a688783",
+    "MsgId": "4922284211088510411",
+    "EncryFileName": "AlibabaPuHuiTi%2Ettf",
+    "FileName": "AlibabaPuHuiTi.ttf",
+    "FileSize": "623568",
+    "Content": "<?xml version=\"1.0\"?>\n<msg>\n\t<appmsg appid=\"\" sdkver=\"0\">\n\t\t<title>AlibabaPuHuiTi.ttf</title>\n\t\t<des />\n\t\t<action />\n\t\t<type>6</type>\n\t\t<showtype>0</showtype>\n\t\t<soundtype>0</soundtype>\n\t\t<mediatagname />\n\t\t<messageext />\n\t\t<messageaction />\n\t\t<content />\n\t\t<contentattr>0</contentattr>\n\t\t<url />\n\t\t<lowurl />\n\t\t<dataurl />\n\t\t<lowdataurl />\n\t\t<songalbumurl />\n\t\t<songlyric />\n\t\t<appattach>\n\t\t\t<totallen>623568</totallen>\n\t\t\t<attachid>@cdn_3057020100044b30490201000204c04d5e9d02032df5a10204e23e2a3a02046656b213042461376335623432312d336534362d343466322d396331342d6561646566636164303538320204051400050201000405004c55cd00_0d403bc8282c9a38e1636028c8489da0_1</attachid>\n\t\t\t<emoticonmd5 />\n\t\t\t<fileext>ttf</fileext>\n\t\t\t<cdnattachurl>3057020100044b30490201000204c04d5e9d02032df5a10204e23e2a3a02046656b213042461376335623432312d336534362d343466322d396331342d6561646566636164303538320204051400050201000405004c55cd00</cdnattachurl>\n\t\t\t<aeskey>0d403bc8282c9a38e1636028c8489da0</aeskey>\n\t\t\t<encryver>0</encryver>\n\t\t\t<overwrite_newmsgid>1216876368463501364</overwrite_newmsgid>\n\t\t\t<fileuploadtoken>v1_+6TXkLpbj6rHXdN1xEMn3P77TpwOJMYf+EYQQDDDHNvBcZ8sGJlesPIZZDjblFMwCNgQCOmr6cI5JPQVD7coluby+srXo5Lw3dIzSl0/iKlYGu6dpvN+kyp1O4GJyWnGt3g6ZBqISFkc1SW5RAdc+rWBwyI9cir5OReSBsFnf8Nn5Ovs1bJf375HGSjveVS/THt3vJOwsmqQccpumAw=</fileuploadtoken>\n\t\t</appattach>\n\t\t<extinfo />\n\t\t<sourceusername />\n\t\t<sourcedisplayname />\n\t\t<thumburl />\n\t\t<md5>2546e45a5fa2e6cc11a42593fc56beb7</md5>\n\t\t<statextstr />\n\t</appmsg>\n\t<fromusername></fromusername>\n\t<scene>0</scene>\n\t<appinfo>\n\t\t<version>1</version>\n\t\t<appname></appname>\n\t</appinfo>\n\t<commenturl></commenturl>\n</msg>\n",
+    "FromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "OriContent": "",
+    "StatusNotifyUserName": "",
+    "Ticket": "",
+    "ToUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "Url": "",
+    "RecommendInfo": {
+        "OpCode": 0,
+        "Scene": 0,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 0,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": ""
+    }
+}
+
+视频消息
+{
+    "AppInfo": {
+        "Type": 0,
+        "AppID": ""
+    },
+    "AppMsgType": 0,
+    "HasProductId": 0,
+    "ImgHeight": 135,
+    "ImgStatus": 1,
+    "ImgWidth": 240,
+    "ForwardFlag": 0,
+    "MsgType": 43,
+    "Status": 3,
+    "StatusNotifyCode": 0,
+    "SubMsgType": 0,
+    "VoiceLength": 0,
+    "CreateTime": 1716957839,
+    "NewMsgId": 4239129923439918524,
+    "PlayLength": 449,
+    "MediaId": "",
+    "MsgId": "4239129923439918524",
+    "EncryFileName": "",
+    "FileName": "",
+    "FileSize": "",
+    "Content": "@b935ec0f50c6dcaba78b15d64c6f33f1eefab58fec1ac7fb55a63b8fefdada6279f556619c867b026dfa03d3d7399cf10257b2cbe3d2656c6a3ca7c6a93342f886dec545cc986f14e951a3fd81836f2f71cf906a04f8dc0dd4b0577bef0931b7d3684b77671f20b46b162ac60d836becba4d22aeb6cb452f28efc81d9b28e7b51ecef8ff886da93e4293ca1adc3389c11ea6c954048942faa7308c6c0e9bbe5f72539e21728ababd69abea36b67a8a0daac0194f71c90a55b738d2ce7cc8652326377bae11cf7930ee3e479f869e0726b2a44140bc5ff5e4c0839a5dafdec284a4dd08f085325c92a4851f4e42b6cecdac27817476c5385fb5fe0fa26aabc68609e436f691094b383badd5b191e9bec42912eedc67cd43f590f70ead22b699e7d4b610f1f5029f6045c69bb58c6f57ee935500fb8e8ed8fa91f64f659fb6e8591f53ba4cc31689ae8a5809e61916522aaae0f462841f926d07f377d266cfb5d1457343bedb8dc56d1307af5de4be342309b915cd440043acfcaa5f871256afba881a3702df925cb81fbf5e74ba0b6c3bc5010ef103204a8f1153181f09c3863ba65d51f28504b86bba3caf90100977a4ec7102e0a52ac8bd5150d2309e6b08bef5f7df879ab1b89a5525cb448137bd9a606f1afbac916ebdca54a245cf7a6f7343214c17e590b24bd7cd1e7d541a7a1f74ecc68db22e73adb667c86840d1661ad177dba1887debdf28822d1d8b5d6e3d1cf6e5964934221ea539771b7704d4769359be5b3cb748ad16c86992c8ff5467d08a82fe425ce92bcecf2fa3e9e9705897fcf8c3f3711d2a3a69cc948aab6f1bdc52c21cd959a8ae7eefb43afb410ab6732c748a8fd4ef034754295fcf64d606c3985783cdc46968c4545312ffabbdca82eac0b7d2513bfa0c3b1e3caa5cfc546ef850cc85cc5badd43789cd71e577532484627fd4d1cbbb97287127a482446cdbf2cfdda5afb22b16114dafe3eb6af83f8c3c59e4f8e04590ab20432325d2fa4864f95550d4e9db7340c270beb984cda8470993ad83de819b6bf8188fb3b0c48592d866f2fee99d8be035c81db052eb3b81e7ecd1ab83f558aed321136e355df9353056a73b1ba5bcf6b6b4e8396d632e620fef0a305123c916c424393e9ad1ad907006765c643b7ce43711facf6592a646175739585526b875013893798b653cca3a28d3e44b3a51b383a3e0d2719d84c319975d776e7363adc58e62fd5c5b",
+    "FromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "OriContent": "",
+    "StatusNotifyUserName": "",
+    "Ticket": "",
+    "ToUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "Url": "",
+    "RecommendInfo": {
+        "OpCode": 0,
+        "Scene": 0,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 0,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": ""
+    }
+}
+
+名片信息
+{
+    "appInfo": {
+        "type": 0,
+        "appID": ""
+    },
+    "appMsgType": 0,
+    "hasProductId": 0,
+    "imgHeight": 0,
+    "imgStatus": 1,
+    "imgWidth": 0,
+    "forwardFlag": 0,
+    "msgType": 42,
+    "status": 3,
+    "statusNotifyCode": 0,
+    "subMsgType": 0,
+    "voiceLength": 0,
+    "createTime": 1716976674,
+    "newMsgId": 3557735550860889098,
+    "playLength": 0,
+    "mediaId": "",
+    "msgId": "3557735550860889098",
+    "encryFileName": "",
+    "fileName": "",
+    "fileSize": "",
+    "content": "<?xml version=\"1.0\"?>\n<msg bigheadimgurl=\"http://wx.qlogo.cn/mmhead/ver_1/TxZDLd23eXHxt65rzjugrUb7ClBBrkqTj3JaFPeVWljIMqP5HrsfHLjzngUvpfXeNqhAZib1GWnG4jSia8odRSSpdG5EPDmvL0grzh7O9rV44HCY29ONyVuMTk8maX5l5c/0\" smallheadimgurl=\"http://wx.qlogo.cn/mmhead/ver_1/TxZDLd23eXHxt65rzjugrUb7ClBBrkqTj3JaFPeVWljIMqP5HrsfHLjzngUvpfXeNqhAZib1GWnG4jSia8odRSSpdG5EPDmvL0grzh7O9rV44HCY29ONyVuMTk8maX5l5c/132\" username=\"v3_020b3826fd0301000000000062ea25f737fbdf000000501ea9a3dba12f95f6b60a0536a1adb6573d0efba81248d46523aa80c6b9f4650938d9bed46764bf9144c6aab438577b10fbf8bb175dc362e09decd9a18f1148ab1612ce153d5c805f54e7439f@stranger\" nickname=\"A+电信南湖国际-江刚\"  shortpy=\"\" alias=\"\" imagestatus=\"3\" scene=\"17\" province=\"\" city=\"\" sign=\"\" sex=\"0\" certflag=\"0\" certinfo=\"\" brandIconUrl=\"\" brandHomeUrl=\"\" brandSubscriptConfigUrl=\"\" brandFlags=\"0\" regionCode=\"\" biznamecardinfo=\"\" antispamticket=\"v4_000b708f0b0400000100000000008513494aed5eeda0c5a323fc56661000000050ded0b020927e3c97896a09d47e6e9e427690bfe70c1eec8a8a6a9c988702a0c332188eba73a52d46e5d597db8297ab43804b94078497554ed7317bb2ac1bb2b6b7ee66e29349ef38805a977b59d1017089043f9a9d05dc5dc500c87095d931fcc390d30f18ecb27e2c15299a9780ea0731abcd8bf94109222c3c14f200fbca56084596e99b51e79129cf98fc76e583b21cb795f8cf4039ce1a2d77bff09c2e3902531ba0ac6ceba21fd40944416fc3517ca3a216bf6ea6992ea8fb6fbeff431472e8747821747a75f660486637e7418c925565fc618d4656905da160f351bfece6150b5121419cb81c54982d9d349fe7f31e401b42cd99e1@stranger\" />\n",
+    "fromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "oriContent": "",
+    "statusNotifyUserName": "",
+    "ticket": "",
+    "toUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "url": "",
+    "recommendInfo": {
+        "OpCode": 0,
+        "Scene": 17,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 32,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "A+电信南湖国际-江刚",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": "@32db3d66723eebcb5aab9708f9b1d2f4d47c05c4cd37035d9e5492199daf47b1"
+    }
+}
+音乐信息
+{
+    "appInfo": {
+        "type": 0,
+        "appID": "wx5aa333606550dfd5"
+    },
+    "appMsgType": 3,
+    "hasProductId": 0,
+    "imgHeight": 0,
+    "imgStatus": 2,
+    "imgWidth": 0,
+    "forwardFlag": 0,
+    "msgType": 49,
+    "status": 3,
+    "statusNotifyCode": 0,
+    "subMsgType": 0,
+    "voiceLength": 0,
+    "createTime": 1716976769,
+    "newMsgId": 7791047780952717859,
+    "playLength": 0,
+    "mediaId": "",
+    "msgId": "7791047780952717859",
+    "encryFileName": "%E5%8F%AF%E8%83%BD",
+    "fileName": "可能",
+    "fileSize": "",
+    "content": "<msg>\n\t<appmsg appid=\"wx5aa333606550dfd5\" sdkver=\"0\">\n\t\t<title>可能</title>\n\t\t<des>程响</des>\n\t\t<type>3</type>\n\t\t<url>http://c.y.qq.com/v8/playsong.html?songmid=002i54Mn1oJnjw</url>\n\t\t<lowurl>http://c.y.qq.com/v8/playsong.html?songmid=002i54Mn1oJnjw</lowurl>\n\t\t<dataurl>http://isure6.stream.qqmusic.qq.com/RS02063mieKt1el4Z4.mp3?guid=2000000049&amp;vkey=6D33A843F08AC9A38069A3E2341C9EEC6E8C88417788A6298FF5FFC2DC7541C1DFB69905016AC6081B00205238D0A148D9856DF4E14B4132&amp;uin=0&amp;fromtag=20049&amp;trace=1afe5dd6292e3f83</dataurl>\n\t\t<songalbumurl>http://wx.y.gtimg.cn/music/photo_new/T002R500x500M000003DFrnj26SMZU_3.jpg</songalbumurl>\n\t\t<songlyric>[ti:可能]\n[ar:程响]\n[al:可能]\n[by:v_shkzhong]\n[offset:0]\n[00:00.00]可能 - 程响\n[00:00.97]词：宁缺\n[00:01.55]曲：宁缺\n[00:02.13]编曲：曲比阿且\n[00:03.29]录音：张雨农\n[00:04.26]混音：王朋\n[00:05.04]母带：全相彦\n[00:06.01]平面：华玮轩\n[00:06.98]宣发：冷小婧/杜梦婷\n[00:08.73]企划：刘芳/袋熊/李思睿/威尔\n[00:11.44]统筹：陈亚飞\n[00:12.41]营销：银河方舟X壳壳菠萝\n[00:14.55]项目总监：庄有豪\n[00:15.90]出品人：潘鸿业/陆瑒\n[00:17.07]OP：北京金翼龙国际文化传媒有限公司\n[00:21.92]SP：银河方舟\n[00:26.86]可能南方的阳光 照着北方的风\n[00:31.74]可能时光被吹走 从此无影无踪\n[00:36.69]可能故事只剩下 一个难忘的人\n[00:41.56]可能在昨夜梦里 依然笑得纯真\n[00:47.05]\n[00:48.81]可能北京的后海 许多漂泊的魂\n[00:53.84]可能成都小酒馆 有群孤独的人\n[00:58.70]可能枕边有微笑 才能暖你清晨\n</songlyric>\n\t\t<appattach>\n\t\t\t<cdnthumburl>3057020100044b30490201000204032aa33902032df5a10204a13e2a3a02046656fc81042462323764316430632d346537642d343631652d393134322d3364376137366133323332320204051808030201000405004c4cd100</cdnthumburl>\n\t\t\t<cdnthumbmd5>8a9ae5b52cd57194a29095ae0e08242f</cdnthumbmd5>\n\t\t\t<cdnthumblength>132463</cdnthumblength>\n\t\t\t<cdnthumbwidth>500</cdnthumbwidth>\n\t\t\t<cdnthumbheight>500</cdnthumbheight>\n\t\t\t<cdnthumbaeskey>0234228b7952e652e7099d0fa9c1a6b1</cdnthumbaeskey>\n\t\t\t<aeskey>0234228b7952e652e7099d0fa9c1a6b1</aeskey>\n\t\t\t<encryver>0</encryver>\n\t\t\t<filekey>wxid_qpk4uhi81wr512_40_1716976768</filekey>\n\t\t</appattach>\n\t\t<md5>8a9ae5b52cd57194a29095ae0e08242f</md5>\n\t\t<musicShareItem>\n\t\t\t<mid>getlinkmid_CAESEAoOMDAyaTU0TW4xb0puanc=</mid>\n\t\t</musicShareItem>\n\t</appmsg>\n\t<fromusername></fromusername>\n\t<scene>0</scene>\n\t<appinfo>\n\t\t<version>53</version>\n\t\t<appname>QQ音乐</appname>\n\t</appinfo>\n\t<commenturl />\n</msg>\n",
+    "fromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "oriContent": "",
+    "statusNotifyUserName": "",
+    "ticket": "",
+    "toUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "url": "http://c.y.qq.com/v8/playsong.html?songmid=002i54Mn1oJnjw",
+    "recommendInfo": {
+        "OpCode": 0,
+        "Scene": 0,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 0,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": ""
+    }
+}
+卡券信息
+{
+    "appInfo": {
+        "type": 0,
+        "appID": ""
+    },
+    "appMsgType": 16,
+    "hasProductId": 0,
+    "imgHeight": 0,
+    "imgStatus": 1,
+    "imgWidth": 0,
+    "forwardFlag": 0,
+    "msgType": 49,
+    "status": 3,
+    "statusNotifyCode": 0,
+    "subMsgType": 0,
+    "voiceLength": 0,
+    "createTime": 1716976901,
+    "newMsgId": 6771516865050259993,
+    "playLength": 0,
+    "mediaId": "",
+    "msgId": "6771516865050259993",
+    "encryFileName": "%E8%B5%A0%E9%80%81%E4%BA%86%E4%B8%80%E5%BC%A0%E5%8F%91%E7%A5%A8",
+    "fileName": "赠送了一张发票",
+    "fileSize": "0",
+    "content": "<msg>\n    <appmsg appid=\"\" sdkver=\"0\">\n        <title><![CDATA[赠送了一张发票]]></title>\n        <des><![CDATA[四川大学华西第二...]]></des>\n        <showtype>0</showtype>\n        <content><![CDATA[]]></content>\n        <url><![CDATA[https://support.weixin.qq.com/cgi-bin/mmsupport-bin/readtemplate?t=page/common_page__upgrade&btn_text=btn_text_0&text=text003]]></url>\n        <thumburl><![CDATA[http://mmbiz.qpic.cn/mmbiz_png/CMHAA5HR7E8hTU8w36orcNyibCKxXmwl7jLlgDFnyAcskXJ5LwUd3PByBXqovbKdib1Dnkzelk3V4ZFZjm1wSIoA/0]]></thumburl>\n        <type>16</type>\n        <lowurl><![CDATA[]]></lowurl>\n        <appattach>\n            <totallen>0</totallen>\n            <attachid></attachid>\n            <fileext></fileext>\n        </appattach>\n        <carditem><from_username><![CDATA[nibuchiwochile]]></from_username>\n<card_id><![CDATA[1_pmB7tw1in2R72mHk-L6zuw15XHxA_rHV5CfYoMijQ]]></card_id>\n<from_scene>6</from_scene>\n<card_type>30</card_type>\n<color><![CDATA[#cc463d]]></color>\n<card_type_name><![CDATA[发票]]></card_type_name>\n<brand_name><![CDATA[四川省医疗电子票据]]></brand_name>\n<card_ext><![CDATA[{\"transcation_id\":\"1_pmB7tw1in2R72mHk-L6zuw15XHxA_rHV5CfYoMijQ_1716976901_GwyO\",\"to_username\":\"wxid_qpk4uhi81wr512\"}]]></card_ext>\n</carditem>\n        <giftcard_info>\n                \n        </giftcard_info>\n    </appmsg>\n    <fromusername></fromusername>\n</msg>",
+    "fromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "oriContent": "",
+    "statusNotifyUserName": "",
+    "ticket": "",
+    "toUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "url": "https://support.weixin.qq.com/cgi-bin/mmsupport-bin/readtemplate?t=page/common_page__upgrade&amp;btn_text=btn_text_0&amp;text=text003",
+    "recommendInfo": {
+        "OpCode": 0,
+        "Scene": 0,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 0,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": ""
+    }
+}
+
+位置信息
+{
+    "appInfo": {
+        "type": 0,
+        "appID": ""
+    },
+    "appMsgType": 0,
+    "hasProductId": 0,
+    "imgHeight": 0,
+    "imgStatus": 1,
+    "imgWidth": 0,
+    "forwardFlag": 0,
+    "msgType": 1,
+    "status": 3,
+    "statusNotifyCode": 0,
+    "subMsgType": 48,
+    "voiceLength": 0,
+    "createTime": 1716976933,
+    "newMsgId": 8335957568318996607,
+    "playLength": 0,
+    "mediaId": "",
+    "msgId": "8335957568318996607",
+    "encryFileName": "",
+    "fileName": "",
+    "fileSize": "",
+    "content": "四川省成都市武侯区天府大道中段1366号:\n/cgi-bin/mmwebwx-bin/webwxgetpubliclinkimg?url=xxx&msgid=8335957568318996607&pictype=location",
+    "fromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "oriContent": "<?xml version=\"1.0\"?>\n<msg>\n\t<location x=\"30.539044\" y=\"104.068765\" scale=\"15\" label=\"四川省成都市武侯区天府大道中段1366号\" maptype=\"roadmap\" poiname=\"天府软件园(E区)\" poiid=\"qqmap_7557401985228193646\" buildingId=\"\" floorName=\"\" poiCategoryTips=\"房产小区:产业园区\" poiBusinessHour=\"\" poiPhone=\"\" poiPriceTips=\"\" isFromPoiList=\"true\" adcode=\"510107\" cityname=\"成都市\" />\n</msg>\n",
+    "statusNotifyUserName": "",
+    "ticket": "",
+    "toUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "url": "http://apis.map.qq.com/uri/v1/geocoder?coord=30.539044,104.068765",
+    "recommendInfo": {
+        "OpCode": 0,
+        "Scene": 0,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 0,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": ""
+    }
+}
+语音信息
+{
+    "appInfo": {
+        "type": 0,
+        "appID": ""
+    },
+    "appMsgType": 0,
+    "hasProductId": 0,
+    "imgHeight": 0,
+    "imgStatus": 1,
+    "imgWidth": 0,
+    "forwardFlag": 0,
+    "msgType": 34,
+    "status": 3,
+    "statusNotifyCode": 0,
+    "subMsgType": 0,
+    "voiceLength": 1780,
+    "createTime": 1716976957,
+    "newMsgId": 2982230437176201112,
+    "playLength": 0,
+    "mediaId": "",
+    "msgId": "2982230437176201112",
+    "encryFileName": "",
+    "fileName": "",
+    "fileSize": "",
+    "content": "@fe8225419d6a4ec845a7c13ed934a5487e15d241a3537dd94616b50dca753d68d64e5974d1bf8d7e978ac80c9e17ed5d01314d5c379c996fef67e289a338e63027ce9db1d2e556483a879a1b416b4b57db1f6536787d80702178ea75eda29fb6d21257fcd23e2312f9bd54d837a4b88198dbd3c76c9a44ea3b0fcf9c822c05d01f3c37496fea780879ab8ce5fa39f32c4559af7ae0359a324bb7d73cf7ecbead34cbbc23ed6d65e30d04137a16834e4933bc1fa8dfd1bdce780f8d864f2e25b23b5274065dd7dba0210c336d89cb6e79bce43a12a2c9de4e0086af18e1eac13cd7efe89d0845658de5e7116ec8c8afaf0803b4ca324c3951f4320929e17369123b7c3ffca27f5b3090308794bb24f1d618483b4c9974472d1c727e329668a6c8396956b4e1046856b6617ca818f39cdadfec92f62d5802c6412bb48ed8be058758eb05469945638f0013e2d2d346f244c590bd89a4c557ceb01f8d48d403a0b46a561159af7f2370d089289b6fedcd5711616606c9e5d700c182bbaf0d6132ff24a101fa5f08ea3f0f9db80fc6e32d7010d6aa496d5aa98ce218432902c664cd95cdc88dbe91d5f3fdea81b846546ed266258635e308152e21c9b69fcd7df03fd961d6b26db26f5cf9047946b674ea279c2e9649db33dc66f7531da9dce296ae",
+    "fromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "oriContent": "",
+    "statusNotifyUserName": "",
+    "ticket": "",
+    "toUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "url": "",
+    "recommendInfo": {
+        "OpCode": 0,
+        "Scene": 0,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 0,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": ""
+    }
+}
+拍摄视频
+{
+    "appInfo": {
+        "type": 0,
+        "appID": ""
+    },
+    "appMsgType": 0,
+    "hasProductId": 0,
+    "imgHeight": 162,
+    "imgStatus": 1,
+    "imgWidth": 288,
+    "forwardFlag": 0,
+    "msgType": 43,
+    "status": 3,
+    "statusNotifyCode": 0,
+    "subMsgType": 0,
+    "voiceLength": 0,
+    "createTime": 1716977010,
+    "newMsgId": 7075864489786897225,
+    "playLength": 2,
+    "mediaId": "",
+    "msgId": "7075864489786897225",
+    "encryFileName": "",
+    "fileName": "",
+    "fileSize": "",
+    "content": "@b935ec0f50c6dcaba78b15d64c6f33f1eefab58fec1ac7fb55a63b8fefdada6277492050c180148cdef8c9ffd0862ed4f08211b400b514853225a3cf2e558d73b24422d8cad21c74304b41f50ee845e37347332c5d7ac1ff7db092b1b4522f1a4d7db2b64a040ff9cb0dccb3cd679d7eaea810f115ef4ed357225cf561183842a5715dc1c9c657954cbf208e5e8b10a38b05bbb2f2920fe8fcc8ce999fbbf669f5429fa8aa12dbaf43c76a402a356152dd6bb0ebc0f00e77d29fa7f31b980aebf040870f2318ad4c735d4f4f6247514d4aa4eb93454204f2544e999fafa6881a5d8b49231b7194eb48a37729947986a44c88ef3707bf99ef518e86653f2cc595999da93488f48146b3669e5413ffe5b8a2995edc208a120efeee44d80b67972e5e6ccecd027d37e989452cfc466a65bf5b160881ebd7518d3aaa1fbacbe3d6efb4eb83b32e933b4ae0bae952cfcf983c5e17df7ba7145f9068d660d3d578624658bddd07f036a99eb6f41394c91315f5744fbff14842f941562ab6f6dd3991a0f568e5075af5d9261dd72f4f16de38d1d01b6cfd83260f4fb2fb2c27a430a66564060951b6c44f3b20f0e1207776241d4225367467c05d4b0d2dd7ba7696bb402b94a72e06d01a8802b7342ca0ca46ba2c5b9f0688c90b457d828f09a7d38c8d90269202e5b6ecd7b795514c3580799c23329c0b8385c7b7b60bd75b84191ef408d69415c1a6f774f3005bb7ffdfc916772d978c5cd43f25e76355a61cc05e6caa02b7c1e69d8b18f08e1e59b38f28da308b0a2b966185885d46cd46431a295acc8de153c9a20b80e8a20495ed915c7ee3af1d0c549bf38f334967b0b79a325fba029a4c1fed08fa4372bf81b4aa2a45bffd6479804eede6c86211ce8fdaca6b0b07d4c647ec2a09beeed78eca013977d2166d3df731eeaa085777dd2e3c83bb724c6230542af38983f5dd71795774fb23b501c033337ee973bfac400386193fdac3de12ad0390dce167a488931bfca34e88fb4cf67e46df6b7f65be0847ef768f8232184aa6a792361971af46b7163db01b042b9b00659d12648002af26d98a3d7da77a3c6c8697245ccde9ef37f6c2c6ac53ab7ff411218dd0f5ed5696985e8ed5710d3b946277d22a6bc12dc7102bd50438f628e0910197b830a87df3bbb69aa5f8c627c2be08138dcf3e1adacce1ea7cc18604c2f53b5e8138b4135b54c6",
+    "fromUserName": "@24a47612ae4ca5d537e939c321a8b1fd",
+    "oriContent": "",
+    "statusNotifyUserName": "",
+    "ticket": "",
+    "toUserName": "@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4",
+    "url": "",
+    "recommendInfo": {
+        "OpCode": 0,
+        "Scene": 0,
+        "Sex": 0,
+        "VerifyFlag": 0,
+        "AttrStatus": 0,
+        "QQNum": 0,
+        "Alias": "",
+        "City": "",
+        "Content": "",
+        "NickName": "",
+        "Province": "",
+        "Signature": "",
+        "Ticket": "",
+        "UserName": ""
+    }
+}
+
+共享位置开始结束两个事件
+{"appInfo":{"type":0,"appID":""},"appMsgType":17,"hasProductId":0,"imgHeight":0,"imgStatus":1,"imgWidth":0,"forwardFlag":0,"msgType":49,"status":3,"statusNotifyCode":0,"subMsgType":0,"voiceLength":0,"createTime":1716977033,"newMsgId":4015581975096311558,"playLength":0,"mediaId":"","msgId":"4015581975096311558","encryFileName":"%E6%88%91%E5%8F%91%E8%B5%B7%E4%BA%86%E4%BD%8D%E7%BD%AE%E5%85%B1%E4%BA%AB","fileName":"我发起了位置共享","fileSize":"","content":"\u003cmsg\u003e\u003cappmsg appid=\"\" sdkver=\"0\"\u003e\u003ctype\u003e17\u003c/type\u003e\u003ctitle\u003e\u003c![CDATA[我发起了位置共享]]\u003e\u003c/title\u003e\u003c/appmsg\u003e\u003cfromusername\u003e\u003c/fromusername\u003e\u003c/msg\u003e","fromUserName":"@24a47612ae4ca5d537e939c321a8b1fd","oriContent":"","statusNotifyUserName":"","ticket":"","toUserName":"@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4","url":"","recommendInfo":{"OpCode":0,"Scene":0,"Sex":0,"VerifyFlag":0,"AttrStatus":0,"QQNum":0,"Alias":"","City":"","Content":"","NickName":"","Province":"","Signature":"","Ticket":"","UserName":""}}
+
+127.0.0.1 - - [29/May/2024 18:03:53] "POST /wxbot/callback HTTP/1.1" 200 -
+INFO:root:POST request,
+Path: /wxbot/callback
+Headers:
+Host: api.h.zmlz.net
+User-Agent: req/v3 (https://github.com/imroc/req)
+Content-Length: 783
+Accept-Encoding: gzip
+Content-Type: application/json; charset=utf-8
+X-Forwarded-For: 222.210.61.229, 127.0.0.1
+X-Forwarded-Host: api.h.zmlz.net
+X-Forwarded-Proto: http
+X-Nginx-Proxy: true
+
+Body:
+{"appInfo":{"type":0,"appID":""},"appMsgType":0,"hasProductId":0,"imgHeight":0,"imgStatus":1,"imgWidth":0,"forwardFlag":0,"msgType":10000,"status":4,"statusNotifyCode":0,"subMsgType":0,"voiceLength":0,"createTime":1716977036,"newMsgId":2651966151920361448,"playLength":0,"mediaId":"","msgId":"2651966151920361448","encryFileName":"","fileName":"","fileSize":"","content":"位置共享已经结束","fromUserName":"@24a47612ae4ca5d537e939c321a8b1fd","oriContent":"","statusNotifyUserName":"","ticket":"","toUserName":"@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4","url":"","recommendInfo":{"OpCode":0,"Scene":0,"Sex":0,"VerifyFlag":0,"AttrStatus":0,"QQNum":0,"Alias":"","City":"","Content":"","NickName":"","Province":"","Signature":"","Ticket":"","UserName":""}}
+
+收藏夹发送 带附件
+{"appInfo":{"type":0,"appID":""},"appMsgType":0,"hasProductId":0,"imgHeight":0,"imgStatus":1,"imgWidth":0,"forwardFlag":0,"msgType":49,"status":3,"statusNotifyCode":0,"subMsgType":0,"voiceLength":0,"createTime":1716977092,"newMsgId":242089676595431374,"playLength":0,"mediaId":"","msgId":"242089676595431374","encryFileName":"","fileName":"","fileSize":"","content":"该类型暂不支持，请在手机上查看","fromUserName":"@24a47612ae4ca5d537e939c321a8b1fd","oriContent":"","statusNotifyUserName":"","ticket":"","toUserName":"@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4","url":"","recommendInfo":{"OpCode":0,"Scene":0,"Sex":0,"VerifyFlag":0,"AttrStatus":0,"QQNum":0,"Alias":"","City":"","Content":"","NickName":"","Province":"","Signature":"","Ticket":"","UserName":""}}
+
+
+
+
+表情消息
+{"isAt":false,"appInfo":{"type":0,"appID":""},"appMsgType":0,"hasProductId":0,"imgHeight":300,"imgStatus":2,"imgWidth":300,"forwardFlag":0,"msgType":47,"status":3,"statusNotifyCode":0,"subMsgType":0,"voiceLength":0,"createTime":1717050155,"newMsgId":5804109192555452655,"playLength":0,"mediaId":"","msgId":"5804109192555452655","encryFileName":"","fileName":"","fileSize":"","content":"\u003cmsg\u003e\u003cemoji fromusername = \"xxx\" tousername = \"xxx\" type=\"2\" idbuffer=\"media:0_0\" md5=\"96ebfe24d5ad77f40f439245222cb0c8\" len = \"4878086\" productid=\"\" androidmd5=\"96ebfe24d5ad77f40f439245222cb0c8\" androidlen=\"4878086\" s60v3md5 = \"96ebfe24d5ad77f40f439245222cb0c8\" s60v3len=\"4878086\" s60v5md5 = \"96ebfe24d5ad77f40f439245222cb0c8\" s60v5len=\"4878086\" cdnurl = \"http://wxapp.tc.qq.com/262/20304/stodownload?m=96ebfe24d5ad77f40f439245222cb0c8\u0026amp;filekey=30350201010421301f0202010604025348041096ebfe24d5ad77f40f439245222cb0c802034a6f06040d00000004627466730000000132\u0026amp;hy=SH\u0026amp;storeid=26318e9be000ba5da000000000000010600004f5053482ec67b40b67ed0bca\u0026amp;bizid=1023\" designerid = \"\" thumburl = \"\" encrypturl = \"http://wxapp.tc.qq.com/262/20304/stodownload?m=7d7db5975dfced6c6388f8c7e2882e0e\u0026amp;filekey=30350201010421301f020201060402534804107d7db5975dfced6c6388f8c7e2882e0e02034a6f10040d00000004627466730000000132\u0026amp;hy=SH\u0026amp;storeid=26318e9bf000ca918000000000000010600004f50534810d67b40b67ed2492\u0026amp;bizid=1023\" aeskey= \"38e1f8acfbf83dcc88d461d37fe46ca3\" externurl = \"http://wxapp.tc.qq.com/262/20304/stodownload?m=80dac7603af1a518f9ed94fbde3ceb32\u0026amp;filekey=30350201010421301f0202010604025348041080dac7603af1a518f9ed94fbde3ceb32020304acd0040d00000004627466730000000132\u0026amp;hy=SH\u0026amp;storeid=26318e9c00006dcbb000000000000010600004f5053481ec67b40b67e4a060\u0026amp;bizid=1023\" externmd5 = \"d204db1d346bd964c75981fba03d6010\" width= \"300\" height= \"300\" tpurl= \"\" tpauthkey= \"\" attachedtext= \"打了一个哈欠\" attachedtextcolor= \"FFFFFF\" lensid= \"\" emojiattr= \"\" linkid= \"\" desc= \"\" activityid = \"Selfie:967667041a726d207b52a14dfe52dcfc\" \u003e\u003c/emoji\u003e \u003cgameext type=\"0\" content=\"0\" \u003e\u003c/gameext\u003e\u003c/msg\u003e","fromUserName":"@24a47612ae4ca5d537e939c321a8b1fd","oriContent":"","statusNotifyUserName":"","ticket":"","toUserName":"@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4","url":"","recommendInfo":{"OpCode":0,"Scene":0,"Sex":0,"VerifyFlag":0,"AttrStatus":0,"QQNum":0,"Alias":"","City":"","Content":"","NickName":"","Province":"","Signature":"","Ticket":"","UserName":""},"attachmentUrl":""}
+
+
+
+添加好友微信
+{"isAt":false,"appInfo":{"type":0,"appID":""},"appMsgType":0,"hasProductId":0,"imgHeight":0,"imgStatus":1,"imgWidth":0,"forwardFlag":0,"msgType":37,"status":3,"statusNotifyCode":0,"subMsgType":0,"voiceLength":0,"createTime":1717053302,"newMsgId":1713012656424006904,"playLength":0,"mediaId":"","msgId":"1713012656424006904","encryFileName":"","fileName":"","fileSize":"","content":"\u003cmsg fromusername=\"percyspy\" encryptusername=\"v3_020b3826fd0301000000000020d13685d37c52000000501ea9a3dba12f95f6b60a0536a1adb6573d0efba81248d46523aa80c61e4b47959bf32bc3c23de8db8f0afd06c28dceb2accaec1b56781cfc4ef741ed@stranger\" fromnickname=\"钩子\" content=\"我是钩子\"  shortpy=\"GZ\" imagestatus=\"3\" scene=\"30\" country=\"CN\" province=\"Sichuan\" city=\"Chengdu\" sign=\"\" percard=\"1\" sex=\"1\" alias=\"PercyQQ\" weibo=\"\" albumflag=\"0\" albumstyle=\"0\" albumbgimgid=\"\" snsflag=\"273\" snsbgimgid=\"http://mmsns.qpic.cn/mmsns/4376ae1e0cf0ccced233def9ad1560d0dec29d64941ab85af02550b3c5c0945433f9c120080eefa6790e9111234ae7664cd00a0dca5ba082/0\" snsbgobjectid=\"11523602117742497809\" mhash=\"b45e1d3d047d21e7d412e6a6d4f8e799\" mfullhash=\"b45e1d3d047d21e7d412e6a6d4f8e799\" bigheadimgurl=\"http://wx.qlogo.cn/mmhead/ver_1/HJzwqhCZIBiaHuA59Hqw7S5ZEdhZNMET6jF8Kumm2KvT2h6Ktm0YuxaEa2pSkHBzdkEufPLoe3DKhLGZWgSQKJG5YeBPibsLicibaZaswib7XFB0/0\" smallheadimgurl=\"http://wx.qlogo.cn/mmhead/ver_1/HJzwqhCZIBiaHuA59Hqw7S5ZEdhZNMET6jF8Kumm2KvT2h6Ktm0YuxaEa2pSkHBzdkEufPLoe3DKhLGZWgSQKJG5YeBPibsLicibaZaswib7XFB0/96\" ticket=\"v4_000b708f0b040000010000000000feb92f9286a99f698949762758661000000050ded0b020927e3c97896a09d47e6e9e6e9ada77e51d42e47c74a1b8c4ab8a740a746aeb4eb092533d99a730478c50366dacfaaa60de25d0631fb95c173a0b4c883cc77037200d630e02be95fc7674916129993bdd142641409e2c282f8568067c79ea34034d1fc5c03fe2176fe9d625fa7fe11a26ebb10110@stranger\" opcode=\"2\" googlecontact=\"\" qrticket=\"\" chatroomusername=\"\" sourceusername=\"\" sourcenickname=\"\" sharecardusername=\"\" sharecardnickname=\"\" cardversion=\"\" extflag=\"0\"\u003e\u003cbrandlist count=\"0\" ver=\"804070511\"\u003e\u003c/brandlist\u003e\u003c/msg\u003e","fromUserName":"fmessage","oriContent":"","statusNotifyUserName":"","ticket":"","toUserName":"@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4","url":"","recommendInfo":{"OpCode":2,"Scene":30,"Sex":1,"VerifyFlag":0,"AttrStatus":258151,"QQNum":0,"Alias":"","City":"成都","Content":"我是钩子","NickName":"钩子","Province":"四川","Signature":"","Ticket":"v4_000b708f0b040000010000000000feb92f9286a99f698949762758661000000050ded0b020927e3c97896a09d47e6e9e6e9ada77e51d42e47c74a1b8c4ab8a740a746aeb4eb092533d99a730478c50366dacfaaa60de25d0631fb95c173a0b4c883cc77037200d630e02be95fc7674916129993bdd142641409e2c282f8568067c79ea34034d1fc5c03fe2176fe9d625fa7fe11a26ebb10110@stranger","UserName":"@e9fc5df7c84f1c749643e40e05601613"},"attachmentUrl":""}
+
+添加好友通过消息：
+{"isAt":false,"appInfo":{"type":0,"appID":""},"appMsgType":0,"hasProductId":0,"imgHeight":0,"imgStatus":1,"imgWidth":0,"forwardFlag":0,"msgType":10000,"status":4,"statusNotifyCode":0,"subMsgType":0,"voiceLength":0,"createTime":1717053711,"newMsgId":5588064609130952577,"playLength":0,"mediaId":"","msgId":"5588064609130952577","encryFileName":"","fileName":"","fileSize":"","content":"你已添加了钩子，现在可以开始聊天了。","fromUserName":"@e9fc5df7c84f1c749643e40e05601613","oriContent":"","statusNotifyUserName":"","ticket":"","toUserName":"@2495fe171b55b3de9c5b865c89e7217b5bf6569777633c2ea4f9734c3bf08dd4","url":"","recommendInfo":{"OpCode":0,"Scene":0,"Sex":0,"VerifyFlag":0,"AttrStatus":0,"QQNum":0,"Alias":"","City":"","Content":"","NickName":"","Province":"","Signature":"","Ticket":"","UserName":""},"attachmentUrl":""}
