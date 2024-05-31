@@ -143,3 +143,9 @@ type SubscriptionListResp struct {
 		Wxid     string `json:"wxid"`
 	} `json:"ReturnJson"`
 }
+
+type CallbackResp struct {
+	Code   int     `json:"code"`
+	Result string  `json:"result"`
+	Data   Message `json:"data"`
+}

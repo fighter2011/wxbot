@@ -19,7 +19,7 @@ import (
 const (
 	UrlRobotInfo        string = "/api/v1/robot/info"
 	UrlListFriend       string = "/api/v1/robot/friends/list"
-	UrlListGroup        string = "/api/v1/robot/group/member/list"
+	UrlListGroup        string = "/api/v1/robot/group/list"
 	UrlListGroupMembers string = "/api/v1/robot/group/member/list"
 	UrlListMp           string = "/api/v1/robot/mps/list"
 	UrlTextSend         string = "/api/v1/robot/text/send"
@@ -226,7 +226,7 @@ func (f *Framework) SendTextAndAt(toGroupWxId, toWxId, toWxName, text string) er
 }
 
 func (f *Framework) SendImage(toWxId, path string) error {
-	return f.sendFile(toWxId, []string{path}, VIDEO)
+	return f.sendFile(toWxId, []string{path}, IMAGE)
 }
 
 func (f *Framework) SendShareLink(toWxId, title, desc, imageUrl, jumpUrl string) error {

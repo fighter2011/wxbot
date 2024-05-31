@@ -30,13 +30,13 @@ func (f *Framework) Callback(ctx *gin.Context, handler func(*robot.Event, robot.
 		return
 	}
 	var event *robot.Event
-	var msg Message
-	err = json.Unmarshal(recv, &msg)
+	var callbackResp CallbackResp
+	err = json.Unmarshal(recv, &callbackResp)
 	if err != nil {
 		log.Errorf("解析消息失败 %v 异常是: %v", string(recv), err)
 		return
 	}
-	event, err = f.pipeline.doProcess(&msg)
+	event, err = f.pipeline.doProcess(&callbackResp.Data)
 	if err != nil {
 		log.Errorf("解析消息失败 %v 异常是: %v", string(recv), err)
 		return
