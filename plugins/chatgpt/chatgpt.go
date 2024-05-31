@@ -164,7 +164,7 @@ func init() {
 				ctx.ReplyTextAndAt("和你的聊天上下文内容太多啦，我的记忆好像在消退.. 糟糕，我忘记了..，请重新问我吧")
 				chatRoomCtx.LoadAndDelete(chatRoom.chatId)
 			default:
-				ctx.ReplyTextAndAt("ChatGPT出错了，Err：" + err.Error())
+				ctx.ReplyTextAndAt("AI出错了，Err：" + err.Error())
 			}
 			return
 		}
@@ -318,7 +318,7 @@ func init() {
 		var gptModel GptModel
 		if err := db.Orm.Table("gptmodel").Limit(1).Find(&gptModel).Error; err != nil {
 			log.Errorf("[ChatGPT] 获取模型配置失败, err: %s", err.Error())
-			ctx.ReplyTextAndAt("插件 - ChatGPT\n获取模型配置失败")
+			ctx.ReplyTextAndAt("插件 - AI\n获取模型配置失败")
 			return
 		}
 
@@ -331,7 +331,7 @@ func init() {
 		// key设置
 		var keys []ApiKey
 		if err := db.Orm.Table("apikey").Find(&keys).Error; err != nil {
-			log.Errorf("[ChatGPT] 获取apiKey失败, err: %s", err.Error())
+			log.Errorf("[AI] 获取apiKey失败, err: %s", err.Error())
 			ctx.ReplyTextAndAt("插件 - ChatGPT\n获取apiKey失败")
 			return
 		}
@@ -341,8 +341,8 @@ func init() {
 		// Proxy查询
 		var proxy []ApiProxy
 		if err := db.Orm.Table("apiproxy").Find(&proxy).Error; err != nil {
-			log.Errorf("[ChatGPT] 获取apiproxy失败, err: %s", err.Error())
-			ctx.ReplyTextAndAt("插件 - ChatGPT\n获取apiProxy失败")
+			log.Errorf("[AI] 获取apiproxy失败, err: %s", err.Error())
+			ctx.ReplyTextAndAt("插件 - AI\n获取apiProxy失败")
 			return
 		}
 		for i := range proxy {
@@ -353,6 +353,6 @@ func init() {
 				replyMsg += fmt.Sprintf("httpProxy: %s\n", proxy[i].Url)
 			}
 		}
-		ctx.ReplyTextAndAt(fmt.Sprintf("插件 - ChatGPT\n%s", replyMsg))
+		ctx.ReplyTextAndAt(fmt.Sprintf("插件 - AI\n%s", replyMsg))
 	})
 }

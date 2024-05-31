@@ -35,7 +35,7 @@ var apiKeys []ApiKey
 func getGptClient() (*openai.Client, error) {
 	var keys []ApiKey
 	if err := db.Orm.Table("apikey").Find(&keys).Error; err != nil {
-		log.Errorf("[ChatGPT] 获取apikey失败, error:%s", err.Error())
+		log.Errorf("[AI] 获取apikey失败, error:%s", err.Error())
 		return nil, errors.New("获取apiKey失败")
 	}
 	if len(keys) == 0 {
@@ -45,7 +45,7 @@ func getGptClient() (*openai.Client, error) {
 
 	var proxy []ApiProxy
 	if err := db.Orm.Table("apiproxy").Find(&proxy).Error; err != nil {
-		log.Errorf("[ChatGPT] 获取apiProxy失败, error:%s", err.Error())
+		log.Errorf("[AI] 获取apiProxy失败, error:%s", err.Error())
 		return nil, errors.New("获取apiProxy失败")
 	}
 
@@ -57,7 +57,7 @@ func getGptClient() (*openai.Client, error) {
 		if proxy[i].Id == 2 {
 			proxyUrl, err := url.Parse(proxy[i].Url)
 			if err != nil {
-				log.Errorf("[ChatGPT] 解析http_proxy失败, error:%s", err.Error())
+				log.Errorf("[AI] 解析http_proxy失败, error:%s", err.Error())
 				return nil, errors.New("解析http_proxy失败")
 			}
 			transport := &http.Transport{
@@ -77,7 +77,7 @@ func getGptClient() (*openai.Client, error) {
 func getGptModel() (*GptModel, error) {
 	var model GptModel
 	if err := db.Orm.Table("gptmodel").Limit(1).Find(&model).Error; err != nil {
-		log.Errorf("[ChatGPT] 获取模型配置失败, err: %s", err.Error())
+		log.Errorf("[AI] 获取模型配置失败, err: %s", err.Error())
 		return nil, errors.New("获取模型配置失败")
 	}
 	if model.ImageSize == "" {
@@ -89,7 +89,7 @@ func getGptModel() (*GptModel, error) {
 // 重置gpt3模型配置
 func resetGptModel() error {
 	if err := db.Orm.Table("gptmodel").Where("1=1").Updates(&defaultGptModel).Error; err != nil {
-		log.Errorf("[ChatGPT] 重置模型配置失败, err: %s", err.Error())
+		log.Errorf("[AI] 重置模型配置失败, err: %s", err.Error())
 		return err
 	}
 	return nil

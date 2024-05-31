@@ -79,6 +79,12 @@ func (f *Framework) Init() {
 				Type:    int64(msg.MsgType),
 				Content: msg.Content,
 			},
+			FriendVerifyMessage: &robot.FriendVerifyMessage{
+				WxId:          msg.RecommendInfo.UserName,
+				Nick:          msg.RecommendInfo.NickName,
+				Content:       msg.RecommendInfo.Content,
+				RecommendInfo: msg.RecommendInfo,
+			},
 		}
 		return event
 	})

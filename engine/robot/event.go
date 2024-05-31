@@ -29,15 +29,34 @@ type Message struct {
 
 // FriendVerifyMessage 记录好友验证消息的具体内容
 type FriendVerifyMessage struct {
-	WxId      string // 发送者微信id
-	Nick      string // 发送者昵称
-	V1        string // 验证V1
-	V2        string // 验证V2
-	V3        string // 验证V3
-	V4        string // 验证V4
-	AvatarUrl string // 头像url
-	Content   string // 验证内容
-	Scene     string // 验证场景
+	WxId          string // 发送者微信id
+	Nick          string // 发送者昵称
+	V1            string // 验证V1
+	V2            string // 验证V2
+	V3            string // 验证V3
+	V4            string // 验证V4
+	AvatarUrl     string // 头像url
+	Content       string // 验证内容
+	Scene         string // 验证场景
+	RecommendInfo RecommendInfo
+}
+
+// RecommendInfo 一些特殊类型的消息会携带该结构体信息
+type RecommendInfo struct {
+	OpCode     int
+	Scene      int
+	Sex        int
+	VerifyFlag int
+	AttrStatus int64
+	QQNum      int64
+	Alias      string
+	City       string
+	Content    string
+	NickName   string
+	Province   string
+	Signature  string
+	Ticket     string
+	UserName   string
 }
 
 // TransferMessage 记录转账消息的具体内容

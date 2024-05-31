@@ -285,8 +285,8 @@ func (f *Framework) SendBusinessCard(toWxId, targetWxId string) error {
 	return nil
 }
 
-func (f *Framework) AgreeFriendVerify(v1, v2, scene string) error {
-	sceneInt, err := strconv.Atoi(scene)
+func (f *Framework) AgreeFriendVerify(message *robot.FriendVerifyMessage) error {
+	sceneInt, err := strconv.Atoi(message.Scene)
 	if err != nil {
 		log.Errorf("[VLW] AgreeFriendVerify error: %v", err)
 		return err
@@ -296,8 +296,8 @@ func (f *Framework) AgreeFriendVerify(v1, v2, scene string) error {
 		"api":        "AgreeFriendVerify",
 		"token":      f.ApiToken,
 		"robot_wxid": f.BotWxId,
-		"v1":         v1,
-		"v2":         v2,
+		"v1":         message.V1,
+		"v2":         message.V2,
 		"type":       sceneInt,
 	}
 

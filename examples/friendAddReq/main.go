@@ -22,7 +22,7 @@ func init() {
 			if strings.ToLower(f.Content) != "wxbot" {
 				return
 			}
-			if err := ctx.AgreeFriendVerify(f.V3, f.V4, f.Scene); err != nil {
+			if err := ctx.AgreeFriendVerify(f); err != nil {
 				log.Errorf("同意好友请求失败: %v", err)
 				return
 			}

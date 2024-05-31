@@ -9,12 +9,12 @@
 * 数据来源：https://beta.openai.com
 * 注意：请先私聊机器人配置`appKey`，相关秘钥申请地址点上面链接
 * 指令：
-    * [x] `set chatgpt apiKey [keys]`，(多个key用`;`符号隔开)，设置ChatGPT的apiKey，`apiKey`可小写`apikey`
+    * [x] `set chatgpt apiKey sk-dR2EngyIi11xFcJf32186dDf43164aE7Af6e2d4dB1A185Fa [keys]`，(多个key用`;`符号隔开)，设置ChatGPT的apiKey，`apiKey`可小写`apikey`
     * [x] `del chatgpt apiKey [keys]`，(多个key用`;`符号隔开)， 删除ChatGPT的apiKey，`apiKey`可小写`apikey`
     * [x] `set chatgpt model [key=val]`，`k`和`v`请参考下面表格，没做过多校验，请保证设置正确
     * [x] `reset chatgpt model`，重置GPT的模型配置
     * [x] `get chatgpt info` 获取ChatGPT的信息
-    * [x] `set chatgpt proxy [url]`，设置api.openai.com的代理地址，需要完整的如：https://api.googlevideo.dev/v1
+    * [x] `set chatgpt proxy http://108.174.50.149:3000/v1 [url]`，设置api.openai.com的代理地址，需要完整的如：https://api.googlevideo.dev/v1
     * [x] `del chatgpt proxy`，删除api.openai.com 代理地址
     * [x] `set chatgpt http_proxy [url]`，设置本地http代理地址，clash如：http://127.0.0.1:7890
     * [x] `del chatgpt http_proxy`，删除本地http代理地址

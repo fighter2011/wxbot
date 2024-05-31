@@ -15,8 +15,8 @@ func setImageCommand(ctx *robot.Ctx, msg string, command string) {
 	case "作画":
 		b64, err := AskChatGptWithImage(ctx, msg, time.Second)
 		if err != nil {
-			log.Errorf("ChatGPT出错了，Err：%s", err.Error())
-			ctx.ReplyTextAndAt("ChatGPT出错了，Err：" + err.Error())
+			log.Errorf("AI出错了，Err：%s", err.Error())
+			ctx.ReplyTextAndAt("AI出错了，Err：" + err.Error())
 			return
 		}
 		filename := filepath.Join("data/plugins/chatgpt/cache", msg+".png")

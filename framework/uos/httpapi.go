@@ -246,25 +246,7 @@ func (f *Framework) SendEmoji(toWxId, path string) error {
 }
 
 func (f *Framework) SendMusic(toWxId, name, author, app, jumpUrl, musicUrl, coverUrl string) error {
-	apiUrl := fmt.Sprintf("%s/DaenWxHook/client/", f.ApiUrl)
-	payload := map[string]interface{}{
-		"type": "Q0014",
-		"data": map[string]interface{}{
-			"wxid":     toWxId,
-			"name":     name,
-			"author":   author,
-			"app":      app,
-			"jumpUrl":  jumpUrl,
-			"musicUrl": musicUrl,
-			"imageUrl": coverUrl,
-		},
-	}
-
-	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
-		log.Errorf("[Dean] SendMusic error: %v", err.Error())
-		return err
-	}
-	return nil
+	return errors.New("Not Support Yet")
 }
 
 func (f *Framework) SendMiniProgram(toWxId, ghId, title, content, imagePath, jumpPath string) error {
@@ -276,13 +258,11 @@ func (f *Framework) SendMessageRecord(toWxId, title string, dataList []map[strin
 }
 
 func (f *Framework) SendMessageRecordXML(toWxId, xmlStr string) error {
-	log.Errorf("[Dean] SendMessageRecordXML not support")
-	return errors.New("SendMessageRecordXML not support, please use SendMessageRecord")
+	return errors.New("Not Support Yet")
 }
 
 func (f *Framework) SendFavorites(toWxId, favoritesId string) error {
-	log.Errorf("[Dean] SendFavorites not support")
-	return errors.New("SendFavorites not support")
+	return errors.New("Not Support Yet")
 }
 
 func (f *Framework) SendXML(toWxId, xmlStr string) error {
@@ -295,8 +275,16 @@ func (f *Framework) SendBusinessCard(toWxId, targetWxId string) error {
 	return nil
 }
 
-func (f *Framework) AgreeFriendVerify(v3, v4, scene string) error {
-	//todo
+func (f *Framework) AgreeFriendVerify(message *robot.FriendVerifyMessage) error {
+	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlAgreeUserVerify)
+	payload := map[string]interface{}{
+		"verifyContents": []string{"同意"},
+		"recommendInfo":  message.RecommendInfo,
+	}
+	if err := NewRequest().Post(apiUrl).SetBody(payload).Do().Err; err != nil {
+		log.Errorf("[UOS] GetRobotInfo error: %v", err)
+		return err
+	}
 	return nil
 }
 

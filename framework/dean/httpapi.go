@@ -288,14 +288,14 @@ func (f *Framework) SendBusinessCard(toWxId, targetWxId string) error {
 	return nil
 }
 
-func (f *Framework) AgreeFriendVerify(v3, v4, scene string) error {
+func (f *Framework) AgreeFriendVerify(message *robot.FriendVerifyMessage) error {
 	apiUrl := fmt.Sprintf("%s/DaenWxHook/client/", f.ApiUrl)
 	payload := map[string]interface{}{
 		"type": "Q0017",
 		"data": map[string]interface{}{
-			"scene": scene,
-			"v3":    v3,
-			"v4":    v4,
+			"scene": message.Scene,
+			"v3":    message.V3,
+			"v4":    message.V4,
 		},
 	}
 

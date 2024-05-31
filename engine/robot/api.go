@@ -120,7 +120,7 @@ type IFramework interface {
 	// v3: 验证V3
 	// v4: 验证V4
 	// scene: 验证场景
-	AgreeFriendVerify(v3, v4, scene string) error
+	AgreeFriendVerify(message *FriendVerifyMessage) error
 
 	// InviteIntoGroup 邀请好友加入群组
 	// groupWxId: 群ID
@@ -423,10 +423,10 @@ func (ctx *Ctx) ReplyBusinessCard(targetWxId string) error {
 }
 
 // AgreeFriendVerify 同意好友验证
-func (ctx *Ctx) AgreeFriendVerify(v3, v4, scene string) error {
+func (ctx *Ctx) AgreeFriendVerify(message *FriendVerifyMessage) error {
 	ctx.mutex.Lock()
 	defer ctx.mutex.Unlock()
-	return ctx.framework.AgreeFriendVerify(v3, v4, scene)
+	return ctx.framework.AgreeFriendVerify(message)
 }
 
 // InviteIntoGroup 邀请好友加入群组; typ:1-直接拉，2-发送邀请链接
