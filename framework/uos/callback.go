@@ -63,6 +63,13 @@ func (f *Framework) Init() {
 				Content: msg.Content,
 			},
 		}
+
+		for _, data := range robot.GetBot().Friends() {
+			if data.WxId == event.FromWxId {
+				event.FromName = data.Nick
+				break
+			}
+		}
 		return event
 	})
 	// 处理添加好友消息

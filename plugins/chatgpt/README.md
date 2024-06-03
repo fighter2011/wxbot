@@ -14,7 +14,7 @@
     * [x] `set chatgpt model [key=val]`，`k`和`v`请参考下面表格，没做过多校验，请保证设置正确
     * [x] `reset chatgpt model`，重置GPT的模型配置
     * [x] `get chatgpt info` 获取ChatGPT的信息
-    * [x] `set chatgpt proxy http://108.174.50.149:3000/v1 [url]`，设置api.openai.com的代理地址，需要完整的如：https://api.googlevideo.dev/v1
+    * [x] `set chatgpt proxy  [url]`，设置api.openai.com的代理地址，需要完整的如：https://api.googlevideo.dev/v1
     * [x] `del chatgpt proxy`，删除api.openai.com 代理地址
     * [x] `set chatgpt http_proxy [url]`，设置本地http代理地址，clash如：http://127.0.0.1:7890
     * [x] `del chatgpt http_proxy`，删除本地http代理地址

@@ -22,14 +22,12 @@ import (
 	// 摸鱼办
 	_ "github.com/yqchilde/wxbot/plugins/moyuban"
 
-	// 拼音缩写翻译
-	//_ "github.com/yqchilde/wxbot/plugins/pinyinsuoxie"
+	// _ "github.com/yqchilde/wxbot/plugins/pinyinsuoxie"
 
 	// 漂亮妹妹
 	_ "github.com/yqchilde/wxbot/plugins/plmm"
 
-	// 天气查询
-	//_ "github.com/yqchilde/wxbot/plugins/weather"
+	// _ "github.com/yqchilde/wxbot/plugins/weather"
 
 	// 每日早报
 	_ "github.com/yqchilde/wxbot/plugins/zaobao"
@@ -40,8 +38,7 @@ import (
 	// 查wxId
 	_ "github.com/yqchilde/wxbot/plugins/chaid"
 
-	// 有道翻译
-	//_ "github.com/yqchilde/wxbot/plugins/youdaofanyi"
+	// _ "github.com/yqchilde/wxbot/plugins/youdaofanyi"
 
 	// 自动加好友
 	_ "github.com/yqchilde/wxbot/plugins/friendadd"

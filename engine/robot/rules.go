@@ -137,7 +137,7 @@ func FullMatchRule(src ...string) Rule {
 // AdminPermission 只允许系统配置的管理员使用
 func AdminPermission(ctx *Ctx) bool {
 	for _, su := range bot.config.SuperUsers {
-		if su == ctx.Event.FromWxId {
+		if su == ctx.Event.FromName {
 			return true
 		}
 	}

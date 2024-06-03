@@ -226,7 +226,7 @@ func (f *Framework) SendTextAndAt(toGroupWxId, toWxId, toWxName, text string) er
 }
 
 func (f *Framework) SendImage(toWxId, path string) error {
-	return f.sendFile(toWxId, []string{path}, IMAGE)
+	return f.sendFile(toWxId, path, IMAGE)
 }
 
 func (f *Framework) SendShareLink(toWxId, title, desc, imageUrl, jumpUrl string) error {
@@ -234,11 +234,11 @@ func (f *Framework) SendShareLink(toWxId, title, desc, imageUrl, jumpUrl string)
 }
 
 func (f *Framework) SendFile(toWxId, path string) error {
-	return f.sendFile(toWxId, []string{path}, FILE)
+	return f.sendFile(toWxId, path, FILE)
 }
 
 func (f *Framework) SendVideo(toWxId, path string) error {
-	return f.sendFile(toWxId, []string{path}, VIDEO)
+	return f.sendFile(toWxId, path, VIDEO)
 }
 
 func (f *Framework) SendEmoji(toWxId, path string) error {
@@ -293,11 +293,11 @@ func (f *Framework) InviteIntoGroup(groupWxId, wxId string, typ int) error {
 	return nil
 }
 
-func (f *Framework) sendFile(toWxId string, urls []string, fileType FileType) error {
+func (f *Framework) sendFile(toWxId string, url string, fileType FileType) error {
 	apiUrl := fmt.Sprintf("%s%s", f.ApiUrl, UrlFileSend)
 	payload := map[string]interface{}{
 		"wxId":     toWxId,
-		"urls":     urls,
+		"url":      url,
 		"fileType": fileType,
 	}
 

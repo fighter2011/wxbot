@@ -4,7 +4,7 @@ botWxId: "你的机器人wxId"
 botNickname: "lumitechBot"
 # 管理员wxId，多个管理员依次添加，用于管理机器人的wxId
 superUsers:
-  - "@24a47612ae4ca5d537e939c321a8b1fd"
+  - "吴秋林"
 # 管理员命令前缀，匹配系统内置管理员指令需要
 commandPrefix: "/"
 # 唤醒机器人限制，可选:at，表示群聊必须at机器人才可匹配指令，留空时为默认规则(无特殊要求建议留空)
