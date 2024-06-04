@@ -166,10 +166,10 @@ func (ctx *Ctx) SendText(wxId, text string) error {
 }
 
 // SendTextAndAt 发送文本消息并@某人到指定群指定用户，仅限群聊
-func (ctx *Ctx) SendTextAndAt(groupWxId, wxId, text string) error {
+func (ctx *Ctx) SendTextAndAt(groupWxId, wxId, wxName, text string) error {
 	ctx.mutex.Lock()
 	defer ctx.mutex.Unlock()
-	return ctx.framework.SendTextAndAt(groupWxId, wxId, "", text)
+	return ctx.framework.SendTextAndAt(groupWxId, wxId, wxName, text)
 }
 
 // SendTextAndSendEvent 发送文本消息到指定好友并将文本消息压入队列进行插件匹配
@@ -341,7 +341,7 @@ func (ctx *Ctx) ReplyTextAndAt(text string) error {
 	if ctx.IsEventPrivateChat() || ctx.IsEventSelfMessage() {
 		return ctx.ReplyText(text)
 	}
-	return ctx.SendTextAndAt(ctx.Event.FromGroup, ctx.Event.FromWxId, text)
+	return ctx.SendTextAndAt(ctx.Event.FromGroup, ctx.Event.FromWxId, ctx.Event.FromName, text)
 }
 
 // ReplyTextAndPushEvent 回复文本消息并将文本消息压入队列进行插件匹配

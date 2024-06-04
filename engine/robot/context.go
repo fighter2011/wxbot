@@ -39,7 +39,8 @@ func (ctx *Ctx) MessageString() string {
 					regex := regexp.MustCompile(`\[at=.*\]\s*`)
 					ctx.message = regex.ReplaceAllString(ctx.Event.Message.Content, "")
 				case "UOS":
-
+					ctx.message = strings.TrimPrefix(ctx.Event.Message.Content, "@"+bot.self.Nick)
+					ctx.message = strings.TrimSpace(ctx.message)
 				}
 			}
 		}

@@ -222,7 +222,9 @@ func (f *Framework) SendText(toWxId, text string) error {
 }
 
 func (f *Framework) SendTextAndAt(toGroupWxId, toWxId, toWxName, text string) error {
-	return f.SendText(toGroupWxId, text)
+	//拼接回复用户名称
+	content := fmt.Sprintf("回复:[%s], %s", toWxName, text)
+	return f.SendText(toGroupWxId, content)
 }
 
 func (f *Framework) SendImage(toWxId, path string) error {

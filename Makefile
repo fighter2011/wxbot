@@ -2,10 +2,16 @@
 
 release: plugins build upx compress
 
+dev: plugins test
+
 GO_FLAGS = -ldflags="-s -w -X github.com/yqchilde/wxbot/engine/robot.version=${version}"
 
 plugins:
 	go generate -tags plugins ./engine/plugins && go mod tidy
+
+
+test:
+	@$(MAKE) --no-print-directory build-linux-arm64
 
 build:
 	@$(MAKE) --no-print-directory \

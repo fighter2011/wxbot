@@ -110,6 +110,10 @@ type Message struct {
 	AttachmentUrl        string              `json:"attachmentUrl"`
 	//senderUserNameInGroup string                 `json:"senderUserNameInGroup"`
 	//item                  map[string]interface{} `json:"item"`
+	GroupSenderInfo struct {
+		WxId     string `json:"wxId"`
+		NickName string `json:"nickName"`
+	} `json:"groupSenderInfo"`
 }
 
 func (m *Message) IsText() bool {

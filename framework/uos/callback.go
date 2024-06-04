@@ -105,7 +105,6 @@ func (f *Framework) Init() {
 			FromUniqueID:  msg.FromUserName,
 			FromGroup:     msg.FromUserName,
 			FromGroupName: "",
-			FromWxId:      msg.FromUserName,
 			FromName:      "",
 			IsAtMe:        msg.IsAt,
 			Message: &robot.Message{
@@ -113,6 +112,12 @@ func (f *Framework) Init() {
 				Content: msg.Content,
 			},
 		}
+		// 设置发送用户信息
+		if msg.GroupSenderInfo.WxId != "" {
+			event.FromWxId = msg.GroupSenderInfo.WxId
+			event.FromName = msg.GroupSenderInfo.NickName
+		}
+
 		for _, data := range robot.GetBot().Groups() {
 			if data.WxId == event.FromGroup {
 				event.FromGroupName = data.Nick
