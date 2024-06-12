@@ -10,12 +10,12 @@ RUN go generate -tags plugins ./engine/plugins
 RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=0 go build -ldflags="-s -w -X github.com/yqchilde/wxbot/engine/robot.version=${VERSION}" -o ./bin/wxbot
+RUN CGO_ENABLED=0 go build -o ./bin/wxbot
 
 FROM alpine:latest
-LABEL MAINTAINER="nibuchiwochile@gmail.com"
+LABEL MAINTAINER="yqchilde@gmail.com"
 WORKDIR /app/
-VOLUME /app/data/
+VOLUME ["/app/data/", "/app/config"]
 
 RUN apk add ca-certificates tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \

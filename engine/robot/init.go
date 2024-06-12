@@ -45,7 +45,7 @@ var version string
 
 func init() {
 	// 检查配置文件是否存在
-	if _, err := os.Stat("config.yaml"); os.IsNotExist(err) {
+	if _, err := os.Stat("./config/config.yaml"); os.IsNotExist(err) {
 		log.Println("未发现配置文件，已为您生成配置文件，请修改后重新运行程序")
 		if err := os.WriteFile("config.yaml", []byte(configTemplate), 0644); err != nil {
 			log.Fatalf("生成配置文件失败: %v", err)

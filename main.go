@@ -17,7 +17,7 @@ import (
 
 func main() {
 	v := viper.New()
-	v.SetConfigFile("config.yaml")
+	v.SetConfigFile("config/config.yaml")
 	if err := v.ReadInConfig(); err != nil {
 		log.Fatalf("[main] 读取配置文件失败: %s", err.Error())
 	}
