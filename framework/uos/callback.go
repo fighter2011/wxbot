@@ -2,6 +2,7 @@ package uos
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/yqchilde/wxbot/engine/pkg/log"
 	"github.com/yqchilde/wxbot/engine/robot"
@@ -27,18 +28,22 @@ func (f *Framework) Callback(ctx *gin.Context, handler func(*robot.Event, robot.
 	recv, err := ctx.GetRawData()
 	if err != nil {
 		log.Errorf("[UOS] 接收回调错误, error: %v", err)
+		ctx.JSON(http.StatusOK, gin.H{"code": 200, "message": fmt.Sprintf("%s:%s", "读取消息失败", err.Error())})
 		return
 	}
+	log.Printf("收到回调消息内容:\n %v", string(recv))
 	var event *robot.Event
 	var callbackResp CallbackResp
 	err = json.Unmarshal(recv, &callbackResp)
 	if err != nil {
 		log.Errorf("解析消息失败 %v 异常是: %v", string(recv), err)
+		ctx.JSON(http.StatusOK, gin.H{"code": 200, "message": fmt.Sprintf("%s:%s", "解析json失败", err.Error())})
 		return
 	}
 	event, err = f.pipeline.doProcess(&callbackResp.Data)
 	if err != nil {
 		log.Errorf("解析消息失败 %v 异常是: %v", string(recv), err)
+		ctx.JSON(http.StatusOK, gin.H{"code": 200, "message": fmt.Sprintf("%s:%s", "处理消息失败", err.Error())})
 		return
 	}
 	handler(event, f)
