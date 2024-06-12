@@ -48,9 +48,15 @@ func (f *Framework) Callback(ctx *gin.Context, handler func(*robot.Event, robot.
 func (f *Framework) Init() {
 	// 处理私聊文字/图片消息
 	f.pipeline.RegisterProcessor(func(msg *Message) bool {
-		return msg.IsSendByFriend() && (msg.IsText() || msg.IsPicture())
+		return msg.IsSendByFriend() && (msg.IsText() || msg.HasFile())
 	}, func(msg *Message) *robot.Event {
 		var event *robot.Event
+		var content string
+		if msg.IsUrl() {
+			content = msg.AttachmentUrl
+		} else {
+			content = msg.Content
+		}
 		event = &robot.Event{
 			IsAtMe:       true,
 			Type:         robot.EventPrivateChat,
@@ -60,7 +66,7 @@ func (f *Framework) Init() {
 			Message: &robot.Message{
 				Id:      msg.MsgId,
 				Type:    int64(msg.MsgType),
-				Content: msg.Content,
+				Content: content,
 			},
 		}
 
@@ -95,11 +101,17 @@ func (f *Framework) Init() {
 		}
 		return event
 	})
-	// 处理群聊文字/图片消息
+	// 处理群聊文字
 	f.pipeline.RegisterProcessor(func(msg *Message) bool {
-		return msg.IsSendByGroup() && (msg.IsText() || msg.IsPicture())
+		return msg.IsSendByGroup() && (msg.IsText() || msg.HasFile())
 	}, func(msg *Message) *robot.Event {
 		var event *robot.Event
+		var content string
+		if msg.IsUrl() {
+			content = msg.AttachmentUrl
+		} else {
+			content = msg.Content
+		}
 		event = &robot.Event{
 			Type:          robot.EventGroupChat,
 			FromUniqueID:  msg.FromUserName,
@@ -109,7 +121,7 @@ func (f *Framework) Init() {
 			IsAtMe:        msg.IsAt,
 			Message: &robot.Message{
 				Type:    int64(msg.MsgType),
-				Content: msg.Content,
+				Content: content,
 			},
 		}
 		// 设置发送用户信息
@@ -130,12 +142,6 @@ func (f *Framework) Init() {
 	// 处理转帐消息
 	f.pipeline.RegisterProcessor(func(msg *Message) bool {
 		return false
-	}, func(msg *Message) *robot.Event {
-		return nil
-	})
-	//处理文件类消息(图片/音乐/视频/文件)
-	f.pipeline.RegisterProcessor(func(msg *Message) bool {
-		return !msg.IsSendByFriend() && msg.IsMedia()
 	}, func(msg *Message) *robot.Event {
 		return nil
 	})

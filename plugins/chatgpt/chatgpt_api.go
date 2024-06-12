@@ -140,7 +140,27 @@ func AskChatGpt(ctx *robot.Ctx, messages []openai.ChatCompletionMessage, delay .
 		})
 	}
 	chatMessages = append(chatMessages, messages...)
-
+	gptClient.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
+		Model:            "",
+		Messages:         nil,
+		MaxTokens:        0,
+		Temperature:      0,
+		TopP:             0,
+		N:                0,
+		Stream:           false,
+		Stop:             nil,
+		PresencePenalty:  0,
+		ResponseFormat:   nil,
+		Seed:             nil,
+		FrequencyPenalty: 0,
+		LogitBias:        nil,
+		LogProbs:         false,
+		TopLogProbs:      0,
+		User:             "",
+		Tools:            []openai.Tool{},
+		ToolChoice:       nil,
+		StreamOptions:    nil,
+	})
 	resp, err := gptClient.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
 		Model:    gptModel.Model,
 		Messages: chatMessages,

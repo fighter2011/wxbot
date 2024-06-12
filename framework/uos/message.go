@@ -209,7 +209,17 @@ func (m *Message) StatusNotify() bool {
 
 // HasFile 判断消息是否为文件类型的消息
 func (m *Message) HasFile() bool {
-	return m.IsPicture() || m.IsVoice() || m.IsVideo() || (m.IsMedia() && m.AppMsgType == AppMsgTypeAttach) || m.IsEmoticon()
+	return m.IsPicture() || m.IsVoice() || m.IsVideo() || m.HasAttachment() || m.IsEmoticon()
+}
+
+// HasAttachment 是否有附件
+func (m *Message) HasAttachment() bool {
+	return m.IsMedia() && m.AppMsgType == AppMsgTypeAttach
+}
+
+// IsUrl 判断消息是否为文件类型的消息 表情包消息使用cdnUrl
+func (m *Message) IsUrl() bool {
+	return m.IsPicture() || m.IsVoice() || m.IsVideo() || m.HasAttachment()
 }
 
 // IsSendBySelf 判断消息是否由自己发送

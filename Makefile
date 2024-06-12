@@ -4,7 +4,6 @@ release: plugins build upx compress
 
 dev: plugins test
 
-GO_FLAGS = -ldflags="-s -w -X github.com/yqchilde/wxbot/engine/robot.version=${version}"
 
 plugins:
 	go generate -tags plugins ./engine/plugins && go mod tidy
@@ -20,22 +19,22 @@ build:
     build-linux-amd64 build-linux-arm64
 
 build-darwin-amd64:
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build ${GO_FLAGS} -o build/darwin-amd64/wxbot
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o build/darwin-amd64/wxbot
 
 build-darwin-arm64:
-	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build ${GO_FLAGS} -o build/darwin-arm64/wxbot
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o build/darwin-arm64/wxbot
 
 build-windows-amd64:
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build ${GO_FLAGS} -o build/windows-amd64/wxbot.exe
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o build/windows-amd64/wxbot.exe
 
 build-windows-arm64:
-	CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build ${GO_FLAGS} -o build/windows-arm64/wxbot.exe
+	CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build -o build/windows-arm64/wxbot.exe
 
 build-linux-amd64:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build ${GO_FLAGS} -o build/linux-amd64/wxbot
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o build/linux-amd64/wxbot
 
 build-linux-arm64:
-	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build ${GO_FLAGS} -o build/linux-arm64/wxbot
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o build/linux-arm64/wxbot
 
 upx:
 	upx --best --lzma build/darwin-amd64/wxbot; \

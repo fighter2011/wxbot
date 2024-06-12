@@ -9,7 +9,7 @@
 * 数据来源：https://beta.openai.com
 * 注意：请先私聊机器人配置`appKey`，相关秘钥申请地址点上面链接
 * 指令：
-    * [x] `set chatgpt apiKey sk-dR2EngyIi11xFcJf32186dDf43164aE7Af6e2d4dB1A185Fa [keys]`，(多个key用`;`符号隔开)，设置ChatGPT的apiKey，`apiKey`可小写`apikey`
+    * [x] `set chatgpt apiKey [keys]`，(多个key用`;`符号隔开)，设置ChatGPT的apiKey，`apiKey`可小写`apikey`
     * [x] `del chatgpt apiKey [keys]`，(多个key用`;`符号隔开)， 删除ChatGPT的apiKey，`apiKey`可小写`apikey`
     * [x] `set chatgpt model [key=val]`，`k`和`v`请参考下面表格，没做过多校验，请保证设置正确
     * [x] `reset chatgpt model`，重置GPT的模型配置
