@@ -13,7 +13,7 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o ./bin/wxbot
 
 FROM alpine:latest
-LABEL MAINTAINER="yqchilde@gmail.com"
+LABEL MAINTAINER="nibuchiwochile@gmail.com"
 WORKDIR /app/
 VOLUME ["/app/data/", "/app/config"]
 
@@ -23,7 +23,6 @@ RUN apk add ca-certificates tzdata \
     && apk del tzdata
 
 COPY --from=builder /app/bin/wxbot /app/wxbot
-COPY --from=builder /app/config.yaml /app/config.yaml
 
 EXPOSE 9528
 ENTRYPOINT ["./wxbot"]
