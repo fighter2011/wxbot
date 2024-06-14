@@ -3,13 +3,10 @@ FROM golang:1.22-alpine as builder
 ENV GOPROXY="https://goproxy.cn,direct"
 ARG VERSION
 WORKDIR /app/
-
-COPY go.mod .
-COPY go.sum .
+COPY . .
 RUN go generate -tags plugins ./engine/plugins
 RUN go mod download
 
-COPY . .
 RUN CGO_ENABLED=0 go build -o ./bin/wxbot
 
 FROM alpine:latest
