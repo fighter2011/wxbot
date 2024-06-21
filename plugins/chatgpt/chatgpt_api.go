@@ -81,7 +81,7 @@ func getGptModel(uid, modelType string) (*GptModel, error) {
 	}
 	if len(userChatModelMapping.ModelName) == 0 {
 		var defaultModel DefaultModel
-		if err := db.Orm.Table("defaultModel").Where("type = ?", uid, modelType).Limit(1).Find(&defaultModel).Error; err != nil {
+		if err := db.Orm.Table("defaultModel").Where("type = ?", modelType).Limit(1).Find(&defaultModel).Error; err != nil {
 			log.Errorf("[AI] 获取默认模型配置失败, err: %s", err.Error())
 			return nil, errors.New("获取默认模型配置失败")
 		}

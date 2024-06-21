@@ -350,6 +350,23 @@ func init() {
 		ctx.ReplyTextAndAt("更新成功")
 	})
 
+	// 获取gpt3模型参数
+	engine.OnRegex(`get\s+ai`, robot.OnlyPrivate, robot.AdminPermission).SetBlock(true).Handle(func(ctx *robot.Ctx) {
+		var gptModel []GptModel
+		result := db.Orm.Table("gptmodel").Find(&gptModel)
+		if result.Error != nil {
+			ctx.ReplyTextAndAt("获取AI配置失败")
+			return
+		}
+		if v, err := json.Marshal(gptModel); err == nil {
+			ctx.ReplyTextAndAt(string(v))
+			return
+		} else {
+			ctx.ReplyTextAndAt("获取AI配置json解析失败")
+			return
+		}
+	})
+
 	// 获取插件配置
 	engine.OnFullMatch("get chatgpt info", robot.OnlyPrivate, robot.AdminPermission).SetBlock(true).Handle(func(ctx *robot.Ctx) {
 		// 获取模型配置

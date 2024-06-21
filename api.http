@@ -57,13 +57,14 @@ Content-Type: application/json
 }
 
 ### 添加模型
-POST http://localhost:9528/ai/model/upsert/batch
+#POST http://localhost:9528/ai/model/upsert/batch
+POST https://wxbot.h.zmlz.net/ai/model/upsert/batch
 Content-Type: application/json
 
 [
   {
-    "model": "gpt-3.5-turbo",
-    "name": "GPT3.5",
+    "model": "glm-4",
+    "name": "glm4",
     "maxTokens": 4096,
     "temperature": 0.8,
     "topP": 1.0,
@@ -73,8 +74,41 @@ Content-Type: application/json
     "type": "TEXT"
   },
   {
-    "model": "gpt-3.5-turbo",
-    "name": "GPT3.51",
+    "model": "glm-v",
+    "name": "glmv",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1.0,
+    "presencePenalty": 0.0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "type": "TEXT"
+  },
+  {
+    "model": "coze",
+    "name": "coze",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1,
+    "presencePenalty": 0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "type": "TEXT"
+  },
+  {
+    "model": "abab6.5-chat",
+    "name": "abab65",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1,
+    "presencePenalty": 0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "type": "TEXT"
+  },
+  {
+    "model": "abab5.5s-chat",
+    "name": "abab55s",
     "maxTokens": 4096,
     "temperature": 0.8,
     "topP": 1,
@@ -86,20 +120,27 @@ Content-Type: application/json
 ]
 
 ### 添加默认模型
-POST http://localhost:9528/ai/default-model/upsert/batch
+#POST http://localhost:9528/ai/default-model/upsert/batch
+POST https://wxbot.h.zmlz.net/ai/default-model/upsert/batch
 Content-Type: application/json
 
 [
   {
-    "modelName": "GPT3.51",
+    "modelName": "coze",
+    "Type": "IMAGE"
+  },
+  {
+    "modelName": "glm-4",
     "Type": "TEXT"
   }
 ]
 
 ### 获取模型
-GET http://localhost:9528/ai/model/list
+#GET http://localhost:9528/ai/model/list
+GET https://wxbot.h.zmlz.net/ai/model/list
 
 
 ### 获取模型
-GET http://localhost:9528/ai/default-model/list
+#GET http://localhost:9528/ai/default-model/list
+GET https://wxbot.h.zmlz.net/ai/default-model/list
 
