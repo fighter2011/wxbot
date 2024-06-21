@@ -17,7 +17,6 @@ import (
 
 var (
 	gptClient *openai.Client
-	gptModel  *GptModel
 )
 
 var (
@@ -74,14 +73,39 @@ func getGptClient() (*openai.Client, error) {
 }
 
 // 获取gpt3模型配置
-func getGptModel() (*GptModel, error) {
+func getGptModel(uid, modelType string) (*GptModel, error) {
+	var userChatModelMapping UserChatModelMapping
+	if err := db.Orm.Table("userChatModelMapping").Where("uid = ? AND type = ?", uid, modelType).Limit(1).Find(&userChatModelMapping).Error; err != nil {
+		log.Errorf("[AI] 获取默认模型配置失败, err: %s", err.Error())
+		return nil, errors.New("获取默认模型配置失败")
+	}
+	if len(userChatModelMapping.ModelName) == 0 {
+		var defaultModel DefaultModel
+		if err := db.Orm.Table("defaultModel").Where("type = ?", uid, modelType).Limit(1).Find(&defaultModel).Error; err != nil {
+			log.Errorf("[AI] 获取默认模型配置失败, err: %s", err.Error())
+			return nil, errors.New("获取默认模型配置失败")
+		}
+		if len(defaultModel.ModelName) == 0 {
+			log.Error("[AI] 未配置AI模型")
+			return nil, errors.New("未配置AI模型")
+		}
+		userChatModelMapping = UserChatModelMapping{
+			ModelName: defaultModel.ModelName,
+			Uid:       uid,
+			Type:      modelType,
+		}
+		if err := db.Orm.Table("userChatModelMapping").Save(&userChatModelMapping).Error; err != nil {
+			log.Errorf("[AI] 设置用户聊天默认失败, err: %s", err.Error())
+			return nil, errors.New("模型配置失败")
+		}
+	}
 	var model GptModel
-	if err := db.Orm.Table("gptmodel").Limit(1).Find(&model).Error; err != nil {
+	if err := db.Orm.Table("gptmodel").Where("Name = ?", userChatModelMapping.ModelName).Limit(1).Find(&model).Error; err != nil {
 		log.Errorf("[AI] 获取模型配置失败, err: %s", err.Error())
 		return nil, errors.New("获取模型配置失败")
 	}
-	if model.ImageSize == "" {
-		model.ImageSize = openai.CreateImageSize512x512
+	if len(model.Model) == 0 {
+		return nil, errors.New("未配置模型")
 	}
 	return &model, nil
 }
@@ -106,11 +130,9 @@ func AskChatGpt(ctx *robot.Ctx, messages []openai.ChatCompletionMessage, delay .
 	}
 
 	// 获取模型
-	if gptModel == nil {
-		gptModel, err = getGptModel()
-		if err != nil {
-			return "", err
-		}
+	gptModel, err := getGptModel(ctx.Uid(), "TEXT")
+	if err != nil {
+		return "", err
 	}
 
 	// 延迟请求
@@ -140,27 +162,6 @@ func AskChatGpt(ctx *robot.Ctx, messages []openai.ChatCompletionMessage, delay .
 		})
 	}
 	chatMessages = append(chatMessages, messages...)
-	gptClient.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
-		Model:            "",
-		Messages:         nil,
-		MaxTokens:        0,
-		Temperature:      0,
-		TopP:             0,
-		N:                0,
-		Stream:           false,
-		Stop:             nil,
-		PresencePenalty:  0,
-		ResponseFormat:   nil,
-		Seed:             nil,
-		FrequencyPenalty: 0,
-		LogitBias:        nil,
-		LogProbs:         false,
-		TopLogProbs:      0,
-		User:             "",
-		Tools:            []openai.Tool{},
-		ToolChoice:       nil,
-		StreamOptions:    nil,
-	})
 	resp, err := gptClient.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
 		Model:    gptModel.Model,
 		Messages: chatMessages,
@@ -205,11 +206,9 @@ func AskChatGptWithImage(ctx *robot.Ctx, prompt string, delay ...time.Duration) 
 	}
 
 	// 获取模型
-	if gptModel == nil {
-		gptModel, err = getGptModel()
-		if err != nil {
-			return "", err
-		}
+	gptModel, err := getGptModel(ctx.Uid(), "IMAGE")
+	if err != nil {
+		return "", err
 	}
 
 	// 延迟请求

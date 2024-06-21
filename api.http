@@ -1,0 +1,105 @@
+POST http://10.1.16.34:9528/wxbot/callback
+Content-Type: application/json
+
+{
+  "isAt": false,
+  "appInfo": {
+    "type": 0,
+    "appID": ""
+  },
+  "appMsgType": 0,
+  "hasProductId": 0,
+  "imgHeight": 0,
+  "imgStatus": 1,
+  "imgWidth": 0,
+  "forwardFlag": 0,
+  "msgType": 1,
+  "status": 3,
+  "statusNotifyCode": 0,
+  "subMsgType": 0,
+  "voiceLength": 0,
+  "createTime": 1718955686,
+  "newMsgId": 2363674557517354095,
+  "playLength": 0,
+  "mediaId": "",
+  "msgId": "2363674557517354095",
+  "encryFileName": "",
+  "fileName": "",
+  "fileSize": "",
+  "content": "测试大模型",
+  "fromUserName": "@1df4935affdd2a97695343ee89da022e",
+  "oriContent": "",
+  "statusNotifyUserName": "",
+  "ticket": "",
+  "toUserName": "@facecdff1d369713c0acc66400ed6740e5e016d6adf4a84679065afa89420da0",
+  "url": "",
+  "recommendInfo": {
+    "OpCode": 0,
+    "Scene": 0,
+    "Sex": 0,
+    "VerifyFlag": 0,
+    "AttrStatus": 0,
+    "QQNum": 0,
+    "Alias": "",
+    "City": "",
+    "Content": "",
+    "NickName": "",
+    "Province": "",
+    "Signature": "",
+    "Ticket": "",
+    "UserName": ""
+  },
+  "attachmentUrl": "",
+  "groupSenderInfo": {
+    "wxId": "",
+    "nickName": ""
+  }
+}
+
+### 添加模型
+POST http://localhost:9528/ai/model/upsert/batch
+Content-Type: application/json
+
+[
+  {
+    "model": "gpt-3.5-turbo",
+    "name": "GPT3.5",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1.0,
+    "presencePenalty": 0.0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "type": "TEXT"
+  },
+  {
+    "model": "gpt-3.5-turbo",
+    "name": "GPT3.51",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1,
+    "presencePenalty": 0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "type": "TEXT"
+  }
+]
+
+### 添加默认模型
+POST http://localhost:9528/ai/default-model/upsert/batch
+Content-Type: application/json
+
+[
+  {
+    "modelName": "GPT3.51",
+    "Type": "TEXT"
+  }
+]
+
+### 获取模型
+GET http://localhost:9528/ai/model/list
+
+
+### 获取模型
+GET http://localhost:9528/ai/default-model/list
+

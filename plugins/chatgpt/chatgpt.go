@@ -4,6 +4,8 @@ import (
 	"embed"
 	"errors"
 	"fmt"
+	"github.com/goccy/go-json"
+	"regexp"
 	"strings"
 	"sync"
 	"time"
@@ -26,10 +28,11 @@ var (
 
 // ChatRoom chatRoomCtx -> ChatRoom => 维系每个人的上下文
 type ChatRoom struct {
-	chatId   string                         // 聊天室ID, 格式为: 聊天室ID_发送人ID
-	chatTime time.Time                      // 聊天时间
-	role     string                         // 角色
-	content  []openai.ChatCompletionMessage // 聊天上下文内容
+	chatId    string                         // 聊天室ID, 格式为: 聊天室ID_发送人ID
+	chatTime  time.Time                      // 聊天时间
+	role      string                         // 角色
+	content   []openai.ChatCompletionMessage // 聊天上下文内容
+	modelName string
 }
 
 func init() {
@@ -79,10 +82,14 @@ func init() {
 	if err := db.Create("sensitive", &SensitiveWords{}); err != nil {
 		log.Fatalf("create sensitive_words table failed: %v", err)
 	}
-	// 初始化gpt 模型参数配置
-	initGptModel := defaultGptModel
-	if err := db.CreateAndFirstOrCreate("gptmodel", &initGptModel); err != nil {
+	if err := db.Create("defaultModel", &DefaultModel{}); err != nil {
+		log.Fatalf("create defaultModel table failed: %v", err)
+	}
+	if err := db.Create("gptmodel", &GptModel{}); err != nil {
 		log.Fatalf("create gptmodel table failed: %v", err)
+	}
+	if err := db.Create("userChatModelMapping", &UserChatModelMapping{}); err != nil {
+		log.Fatalf("create userChatModelMapping table failed: %v", err)
 	}
 	// 初始化系统角色
 	initRole()
@@ -98,7 +105,7 @@ func init() {
 			msg = ctx.MessageString()
 
 			chatRoom = ChatRoom{
-				chatId:   fmt.Sprintf("%s_%s", ctx.Event.FromWxId, ctx.Event.FromWxId),
+				chatId:   fmt.Sprintf("%s_%s", ctx.Uid()),
 				chatTime: time.Now().Local(),
 				content:  []openai.ChatCompletionMessage{},
 			}
@@ -138,7 +145,13 @@ func init() {
 			setRoleCommand(ctx, msg, "删除角色")
 			return
 		case strings.HasPrefix(msg, "切换角色"):
-			setRoleCommand(ctx, msg, "切换角色")
+			changeModel(ctx, msg)
+			return
+		case strings.HasPrefix(msg, "模型列表"):
+			listModel(ctx, msg)
+			return
+		case strings.HasPrefix(msg, "切换模型"):
+			changeModel(ctx, msg)
 			return
 		}
 
@@ -296,7 +309,6 @@ func init() {
 			ctx.ReplyTextAndAt("更新失败")
 			return
 		}
-		gptModel = nil
 		ctx.ReplyTextAndAt("更新成功")
 	})
 
@@ -306,10 +318,36 @@ func init() {
 			ctx.ReplyText("重置模型参数失败, err: " + err.Error())
 			return
 		} else {
-			gptModel = nil
 			ctx.ReplyText("重置模型参数成功")
 			return
 		}
+	})
+
+	// 设置gpt3模型参数
+	engine.OnRegex(`set\s+ai\s+([\w.-]+)`, robot.OnlyPrivate, robot.AdminPermission).SetBlock(true).Handle(func(ctx *robot.Ctx) {
+		args := ctx.State["regex_matched"].([]string)
+
+		configStr := args[1]
+		if len(configStr) == 0 {
+			ctx.ReplyTextAndAt("配置数据不正确")
+			return
+		}
+		var gptModel []GptModel
+		if err := json.Unmarshal([]byte(configStr), &gptModel); err != nil {
+			ctx.ReplyTextAndAt("配置数据格式不正确，只支持json数组")
+			return
+		}
+		result := db.Orm.Table("gptmodel").Where("1=1").Delete(&GptModel{})
+		if result.Error != nil {
+			ctx.ReplyTextAndAt("清空数据失败")
+			return
+		}
+		result = db.Orm.Table("gptmodel").Create(&gptModel)
+		if result.Error != nil {
+			ctx.ReplyTextAndAt("保存数据失败")
+			return
+		}
+		ctx.ReplyTextAndAt("更新成功")
 	})
 
 	// 获取插件配置
@@ -355,4 +393,57 @@ func init() {
 		}
 		ctx.ReplyTextAndAt(fmt.Sprintf("插件 - AI\n%s", replyMsg))
 	})
+}
+
+func listModel(ctx *robot.Ctx, msg string) {
+	var gptModel []GptModel
+	if err := db.Orm.Table("gptmodel").Find(&gptModel).Error; err != nil {
+		ctx.ReplyTextAndAt("获取模型列表失败")
+		return
+	}
+	var names []string
+	for _, model := range gptModel {
+		names = append(names, model.Name)
+	}
+	marshal, err := json.Marshal(names)
+	if err != nil {
+		ctx.ReplyTextAndAt("获取模型列表失败")
+		return
+	}
+	ctx.ReplyTextAndAt(string(marshal))
+}
+
+func changeModel(ctx *robot.Ctx, msg string) {
+	matched := regexp.MustCompile(`^切换模型\s+(.+)$`).FindStringSubmatch(msg)
+	modelName := matched[1]
+	var gptModel GptModel
+	if err := db.Orm.Table("gptmodel").Where("name = ?", modelName).Limit(1).Find(&gptModel).Error; err != nil {
+		log.Errorf("查询模型失败, %s %v", modelName, err)
+		ctx.ReplyTextAndAt("切换默认失败")
+		return
+	}
+	if len(gptModel.Name) == 0 {
+		ctx.ReplyTextAndAt("模型不存在")
+		return
+	}
+	var userChatModel UserChatModelMapping
+	if err := db.Orm.Table("userChatModelMapping").Where("uid = ? AND type = ?", ctx.Uid(), gptModel.Type).Limit(1).Find(&userChatModel).Error; err != nil {
+		ctx.ReplyTextAndAt("切换默认失败")
+		return
+	}
+	if len(userChatModel.ModelName) != 0 {
+		ctx.ReplyTextAndAt("模型未改变，无需切换")
+		return
+	}
+	userChatModel = UserChatModelMapping{
+		ModelName: modelName,
+		Uid:       ctx.Uid(),
+		Type:      gptModel.Type,
+	}
+	if err := db.Orm.Table("userChatModelMapping").Create(&userChatModel).Error; err != nil {
+		ctx.ReplyTextAndAt("切换默认失败")
+		return
+	}
+	chatRoomCtx.LoadAndDelete(ctx.Uid())
+	ctx.ReplyTextAndAt("切换模型成功")
 }

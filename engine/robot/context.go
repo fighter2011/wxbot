@@ -1,6 +1,7 @@
 package robot
 
 import (
+	"fmt"
 	"regexp"
 	"strings"
 	"sync"
@@ -66,4 +67,9 @@ func (ctx *Ctx) CheckGroupSession() Rule {
 // EventChannel 用当前事件创建一个新的事件通道
 func (ctx *Ctx) EventChannel(rule ...Rule) *EventChannel {
 	return ctx.matcher.EventChannel(rule...)
+}
+
+// Uid 消息唯一键
+func (ctx *Ctx) Uid() string {
+	return fmt.Sprintf("%s_%s", ctx.Event.FromUniqueID, ctx.Event.FromWxId)
 }
