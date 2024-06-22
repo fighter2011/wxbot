@@ -94,7 +94,7 @@ func getGptModel(uid, modelType string) (*GptModel, error) {
 			Uid:       uid,
 			Type:      modelType,
 		}
-		if err := db.Orm.Table("userChatModelMapping").Save(&userChatModelMapping).Error; err != nil {
+		if err := db.Orm.Table("userChatModelMapping").Create(&userChatModelMapping).Error; err != nil {
 			log.Errorf("[AI] 设置用户聊天默认失败, err: %s", err.Error())
 			return nil, errors.New("模型配置失败")
 		}
