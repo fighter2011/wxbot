@@ -444,7 +444,7 @@ func changeModel(ctx *robot.Ctx, msg string) {
 		return
 	}
 	var userChatModel UserChatModelMapping
-	if err := db.Orm.Table("userChatModelMapping").Where("uid = ? AND type = ?", ctx.Uid(), gptModel.Type).Limit(1).Find(&userChatModel).Error; err != nil {
+	if err := db.Orm.Table("userChatModelMapping").Where("uid = ? AND model_name = ? and type = ?", ctx.Uid(), gptModel.Name, "TEXT").Limit(1).Find(&userChatModel).Error; err != nil {
 		ctx.ReplyTextAndAt("切换默认失败")
 		return
 	}

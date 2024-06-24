@@ -145,6 +145,35 @@ func runServer(c *Config) {
 		}
 		c.JSON(http.StatusOK, gptModel)
 	})
+	// 更新用户模型列表
+	r.POST("/ai/user-model/upsert/batch", func(c *gin.Context) {
+		result := gptdb.Orm.Table("userChatModelMapping").Where("1=1").Delete(&userChatModelMappingDTO{})
+		if result.Error != nil {
+			c.JSON(http.StatusOK, "清空数据失败")
+			return
+		}
+		var userModel []userChatModelMappingDTO
+		if err := c.ShouldBindJSON(&userModel); err != nil {
+			c.JSON(http.StatusOK, "json数组异常")
+			return
+		}
+		result = gptdb.Orm.Table("userChatModelMapping").Create(&userModel)
+		if result.Error != nil {
+			c.JSON(http.StatusOK, "保存数据失败")
+			return
+		}
+		c.JSON(http.StatusOK, "更新成功")
+	})
+
+	// 获取用户模型列表
+	r.GET("/ai/user-model/list", func(c *gin.Context) {
+		var userModel []userChatModelMappingDTO
+		if err := gptdb.Orm.Table("userChatModelMapping").Find(&userModel).Error; err != nil {
+			c.JSON(http.StatusOK, "获取数据失败")
+			return
+		}
+		c.JSON(http.StatusOK, userModel)
+	})
 
 	// no route
 	r.NoRoute(func(c *gin.Context) {
