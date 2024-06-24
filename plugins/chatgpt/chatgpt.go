@@ -105,7 +105,7 @@ func init() {
 			msg = ctx.MessageString()
 
 			chatRoom = ChatRoom{
-				chatId:   fmt.Sprintf("%s_%s", ctx.Uid()),
+				chatId:   ctx.Uid(),
 				chatTime: time.Now().Local(),
 				content:  []openai.ChatCompletionMessage{},
 			}
