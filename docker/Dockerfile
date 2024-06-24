@@ -6,9 +6,9 @@ WORKDIR /app/
 
 COPY go.mod .
 COPY go.sum .
-RUN go generate -tags plugins ./engine/plugins
 RUN go mod download
 COPY . .
+RUN go generate -tags plugins ./engine/plugins
 
 RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o ./bin/wxbot
 
