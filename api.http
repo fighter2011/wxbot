@@ -1,60 +1,64 @@
-POST http://10.1.16.34:9528/wxbot/callback
+POST http://localhost:9528/wxbot/callback
 Content-Type: application/json
 
 {
-  "isAt": false,
-  "appInfo": {
-    "type": 0,
-    "appID": ""
-  },
-  "appMsgType": 0,
-  "hasProductId": 0,
-  "imgHeight": 0,
-  "imgStatus": 1,
-  "imgWidth": 0,
-  "forwardFlag": 0,
-  "msgType": 1,
-  "status": 3,
-  "statusNotifyCode": 0,
-  "subMsgType": 0,
-  "voiceLength": 0,
-  "createTime": 1718955686,
-  "newMsgId": 2363674557517354095,
-  "playLength": 0,
-  "mediaId": "",
-  "msgId": "2363674557517354095",
-  "encryFileName": "",
-  "fileName": "",
-  "fileSize": "",
-  "content": "测试大模型",
-  "fromUserName": "@1df4935affdd2a97695343ee89da022e",
-  "oriContent": "",
-  "statusNotifyUserName": "",
-  "ticket": "",
-  "toUserName": "@facecdff1d369713c0acc66400ed6740e5e016d6adf4a84679065afa89420da0",
-  "url": "",
-  "recommendInfo": {
-    "OpCode": 0,
-    "Scene": 0,
-    "Sex": 0,
-    "VerifyFlag": 0,
-    "AttrStatus": 0,
-    "QQNum": 0,
-    "Alias": "",
-    "City": "",
-    "Content": "",
-    "NickName": "",
-    "Province": "",
-    "Signature": "",
-    "Ticket": "",
-    "UserName": ""
-  },
-  "attachmentUrl": "",
-  "groupSenderInfo": {
-    "wxId": "",
-    "nickName": ""
+  "code": 200,
+  "data": {
+    "isAt": false,
+    "appInfo": {
+      "type": 0,
+      "appID": ""
+    },
+    "appMsgType": 0,
+    "hasProductId": 0,
+    "imgHeight": 0,
+    "imgStatus": 1,
+    "imgWidth": 0,
+    "forwardFlag": 0,
+    "msgType": 1,
+    "status": 3,
+    "statusNotifyCode": 0,
+    "subMsgType": 0,
+    "voiceLength": 0,
+    "createTime": 1719301639,
+    "newMsgId": 5587273746519589685,
+    "playLength": 0,
+    "mediaId": "",
+    "msgId": "5587273746519589685",
+    "encryFileName": "",
+    "fileName": "",
+    "fileSize": "",
+    "content": "你好",
+    "fromerName": "@32a10f296603115b92cb2e7bc292d74e",
+    "oriContent": "",
+    "statusNotifyUserName": "",
+    "ticket": "",
+    "toUserName": "@148e5de16760fe8c4bd617a8e1b98dd1a62cd34bf893b597da60f69cc19a6b53",
+    "url": "",
+    "recommendInfo": {
+      "OpCode": 0,
+      "Scene": 0,
+      "Sex": 0,
+      "VerifyFlag": 0,
+      "AttrStatus": 0,
+      "QQNum": 0,
+      "Alias": "",
+      "City": "",
+      "Content": "",
+      "NickName": "",
+      "Province": "",
+      "Signature": "",
+      "Ticket": "",
+      "UserName": ""
+    },
+    "attachmentUrl": "",
+    "groupSenderInfo": {
+      "wxId": "",
+      "nickName": ""
+    }
   }
 }
+
 
 ### 添加模型
 #POST http://localhost:9528/ai/model/upsert/batch
@@ -144,3 +148,102 @@ GET https://wxbot.h.zmlz.net/ai/model/list
 #GET http://localhost:9528/ai/default-model/list
 GET https://wxbot.h.zmlz.net/ai/default-model/list
 
+
+### 修改回调地址
+POST https://wx.h.zmlz.net/api/v1/robot/callback/config/update
+Content-Type: application/json
+
+{
+  //  "host": "http://wxbot:9528",
+  "host": "https://api.h.zmlz.net",
+  "msgCallbackPath": "/wxbot/callback"
+}
+
+### 发送图片消息
+POST https://wx.h.zmlz.net/api/v1/robot/file/send
+Content-Type: application/json
+
+{
+  "wxId": "@745cc2ea6b780ee7f9d542a504cb84dd",
+  "url": "https://web-static.4ce.cn/storage/bucket/v1/fa6b91478b78fe0f5462f3c5dbf23ff2.png",
+  "fileType": 0
+}
+
+### 查看bot信息
+### 修改回调地址
+GET https://wx.h.zmlz.net/api/v1/robot/info
+Content-Type: application/json
+
+
+[
+  {
+    "model": "glm-4",
+    "name": "glm4",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1.0,
+    "presencePenalty": 0.0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "toolCalls": [],
+    "toolCallID": "",
+    "supportType": "TEXT",
+    "isDefault": true
+  },
+  {
+    "model": "coze",
+    "name": "coze",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1,
+    "presencePenalty": 0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "toolCalls": [],
+    "toolCallID": "",
+    "supportType": "TEXT",
+    "isDefault": false
+  },
+  {
+    "model": "abab6.5-chat",
+    "name": "abab65",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1,
+    "presencePenalty": 0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "toolCalls": [],
+    "toolCallID": "",
+    "supportType": "TEXT",
+    "isDefault": false
+  },
+  {
+    "model": "abab5.5s-chat",
+    "name": "abab55s",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1,
+    "presencePenalty": 0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "toolCalls": [],
+    "toolCallID": "",
+    "supportType": "TEXT",
+    "isDefault": false
+  },
+  {
+    "model": "coze",
+    "name": "dalle3",
+    "maxTokens": 4096,
+    "temperature": 0.8,
+    "topP": 1,
+    "presencePenalty": 0,
+    "frequencyPenalty": 0.6,
+    "imageSize": "512x512",
+    "toolCalls": [],
+    "toolCallID": "",
+    "supportType": "IMAGE",
+    "isDefault": true
+  }
+]

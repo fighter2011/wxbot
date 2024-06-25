@@ -3,7 +3,7 @@
 #- "github.com/yqchilde/wxbot/plugins/ghmonitor"        # 公众号消息监控转发
 #- "github.com/yqchilde/wxbot/plugins/manager"          # 群组管理相关
 #- "github.com/yqchilde/wxbot/plugins/memepicture"      # 表情包原图
-- "github.com/yqchilde/wxbot/plugins/moyuban"          # 摸鱼办
+# - "github.com/yqchilde/wxbot/plugins/moyuban"          # 摸鱼办
 # - "github.com/yqchilde/wxbot/plugins/pinyinsuoxie"     # 拼音缩写翻译
 #- "github.com/yqchilde/wxbot/plugins/plmm"             # 漂亮妹妹
 # - "github.com/yqchilde/wxbot/plugins/weather"          # 天气查询
@@ -15,4 +15,5 @@
 #- "github.com/yqchilde/wxbot/plugins/choose"           # 选择困难症帮手
 #- "github.com/yqchilde/wxbot/plugins/localimage"       # 读取本地图片
 #- "github.com/yqchilde/wxbot/plugins/localimagespider" # 爬取图片到本地
-- "github.com/yqchilde/wxbot/plugins/chatgpt"          # ChatGPT聊天，优先级必须放到最低
+- "github.com/yqchilde/wxbot/plugins/ai"          # AI聊天，优先级必须放到最低
+# - "github.com/yqchilde/wxbot/plugins/chatgpt"          # ChatGPT聊天，优先级必须放到最低

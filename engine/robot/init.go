@@ -1,14 +1,13 @@
 package robot
 
 import (
-	"errors"
-	"io/fs"
+	"github.com/spf13/viper"
+	"github.com/yqchilde/wxbot/engine/pkg/database"
 	"os"
 
 	"github.com/gin-gonic/gin"
 
 	"github.com/yqchilde/wxbot/engine/pkg/log"
-	"github.com/yqchilde/wxbot/web"
 )
 
 var configTemplate = `# 机器人WxId，修改为自己的机器人wxId
@@ -42,6 +41,7 @@ framework:
 `
 
 var version string
+var GlobalConfig *Config
 
 func init() {
 	// 检查配置文件是否存在
@@ -52,18 +52,27 @@ func init() {
 		}
 		os.Exit(0)
 	}
-
+	v := viper.New()
+	v.SetConfigFile("config/config.yaml")
+	if err := v.ReadInConfig(); err != nil {
+		log.Fatalf("[main] 读取配置文件失败: %s", err.Error())
+	}
+	GlobalConfig = NewConfig()
+	if err := v.Unmarshal(GlobalConfig); err != nil {
+		log.Fatalf("[main] 解析配置文件失败: %s", err.Error())
+	}
+	// 初始化redis
+	initRedis(GlobalConfig)
 	// 打印版本
 	log.Printf("当前运行版本: %s", version)
-
-	// 检查web服务
-	_, err := web.Web.ReadFile("dist/index.html")
-	if err != nil {
-		if errors.Is(err, fs.ErrNotExist) {
-			log.Fatalf("web文件夹下的dist文件夹为空，请使用(git clone --recurse-submodules https://github.com/yqchilde/wxbot.git)克隆完整项目")
-			return
-		}
-		log.Fatalf("读取web/dist/index.html失败，可能造成web服务异常: error: %v", err)
-	}
 	gin.SetMode(gin.ReleaseMode)
+}
+
+func initRedis(c *Config) {
+	database.InitRedisConn(&database.RedisOption{
+		Addr:     c.Redis.Addr,
+		DB:       c.Redis.DB,
+		Password: c.Redis.Password,
+		PoolSize: c.Redis.PoolSize,
+	})
 }

@@ -1,32 +1,23 @@
 package main
 
 import (
-	"github.com/yqchilde/wxbot/framework/uos"
-	"time"
-
-	"github.com/spf13/viper"
 	"github.com/yqchilde/wxbot/engine/pkg/log"
 	"github.com/yqchilde/wxbot/engine/pkg/net"
 	"github.com/yqchilde/wxbot/engine/robot"
 	"github.com/yqchilde/wxbot/framework/dean"
+	"github.com/yqchilde/wxbot/framework/uos"
 	"github.com/yqchilde/wxbot/framework/vlw"
+	"time"
 
 	// 导入插件, 变更插件请查看README
+	_ "github.com/yqchilde/wxbot/engine/pkg/redis"
 	_ "github.com/yqchilde/wxbot/engine/plugins"
 )
 
 func main() {
-	v := viper.New()
-	v.SetConfigFile("config/config.yaml")
-	if err := v.ReadInConfig(); err != nil {
-		log.Fatalf("[main] 读取配置文件失败: %s", err.Error())
-	}
-	c := robot.NewConfig()
-	if err := v.Unmarshal(c); err != nil {
-		log.Fatalf("[main] 解析配置文件失败: %s", err.Error())
-	}
 
 	f := robot.IFramework(nil)
+	c := robot.GlobalConfig
 	switch c.Framework.Name {
 	case "Dean":
 		f = robot.IFramework(dean.New(c.BotWxId, c.Framework.ApiUrl, c.Framework.ApiToken))

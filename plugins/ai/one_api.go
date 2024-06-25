@@ -9,9 +9,7 @@ import (
 	"github.com/yqchilde/wxbot/engine/pkg/log"
 	"github.com/yqchilde/wxbot/engine/pkg/redis"
 	"github.com/yqchilde/wxbot/engine/robot"
-	"github.com/yqchilde/wxbot/plugins/chatgpt"
 	"net/http"
-	"net/url"
 	"strings"
 	"time"
 )
@@ -28,12 +26,6 @@ var (
 	ErrServiceUnavailable = errors.New("ChatGPT服务异常，请稍后再试")
 )
 
-type aiOption struct {
-	apiKey string  // apiKey
-	url    string  // 请求地址
-	models []model // 支持模型列表
-}
-
 type model struct {
 	name        string // 模型
 	displayName string // 展示名称
@@ -41,31 +33,26 @@ type model struct {
 }
 
 func getAiClient() (*openai.Client, error) {
-	var option aiOption
-	if flag, res := redis.Get("ai:one-api:key"); flag {
+	var option AiOption
+	if flag, res := redis.Get(AI_PROXY_KEY); flag {
 		if len(res) == 0 {
 			return nil, errors.New("[AI] AI配置失败")
 		}
 		if err := json.Unmarshal([]byte(res), &option); err != nil {
 			return nil, errors.New("[AI] 解析AI配置失败")
 		}
-		if len(option.apiKey) == 0 || len(option.url) == 0 || len(option.models) == 0 {
+		if len(option.ApiKey) == 0 || len(option.Url) == 0 {
 			return nil, errors.New("[AI] 没有有效的AI配置")
 		}
 	}
-	proxyUrl, err := url.Parse(option.url)
-	if err != nil {
-		log.Errorf("[AI] 解析http_proxy失败, error:%s", err.Error())
-		return nil, errors.New("解析http_proxy失败")
+	if len(option.Url) == 0 {
+		return nil, errors.New("[AI] 未配置proxy")
 	}
-	transport := &http.Transport{
-		Proxy: http.ProxyURL(proxyUrl),
-	}
-	config := openai.DefaultConfig(option.apiKey)
+	config := openai.DefaultConfig(option.ApiKey)
 	config.HTTPClient = &http.Client{
-		Transport: transport,
-		Timeout:   time.Minute * 5,
+		Timeout: time.Minute * 5,
 	}
+	config.BaseURL = option.Url
 	return openai.NewClientWithConfig(config), nil
 }
 
@@ -131,7 +118,42 @@ func AskAI(ctx *robot.Ctx, messages []openai.ChatCompletionMessage, delay ...tim
 }
 
 // 获取使用模型
-func getAiModel(uid, supportType string) (*chatgpt.GptModel, error) {
+func getAiModel(uid, supportType string) (*AIModel, error) {
+	// 从缓存映射中获取模型
+	redisKey := fmt.Sprintf(AI_USER_MODEL_PREFIX_KEY, uid, supportType)
+	var aiModel AIModel
+	if flag, res := redis.Get(redisKey); flag {
+		if err := json.Unmarshal([]byte(res), &aiModel); err != nil {
+			return nil, err
+		}
+	}
+	if len(aiModel.Model) > 0 {
+		// 存在映射关系 直接返回
+		return &aiModel, nil
+	}
+	// 没有映射从所有数据库里面获取默认模型
+	var aiModels []AIModel
+	if flag, res := redis.Get(AI_MODEL_KEY); flag {
+		if err := json.Unmarshal([]byte(res), &aiModels); err != nil {
+			return nil, err
+		}
+	}
+	if len(aiModels) == 0 {
+		return nil, errors.New("[AI] 获取AI模型数据失败")
+	}
 
-	return nil, nil
+	for _, m := range aiModels {
+		if m.IsDefault && m.SupportType == supportType {
+			aiModel = m
+		}
+	}
+	if len(aiModel.Model) == 0 {
+		return nil, errors.New("[AI] 获取默认模型失败")
+	}
+	if data, err := json.Marshal(aiModel); err == nil {
+		redis.Set(redisKey, string(data))
+	} else {
+		log.Errorf("[AI] json序列化模型关系异常, %v", aiModel)
+	}
+	return &aiModel, nil
 }
