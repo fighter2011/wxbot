@@ -2,7 +2,6 @@ package robot
 
 import (
 	"fmt"
-	"github.com/yqchilde/wxbot/engine/pkg/sqlite"
 	"net/http"
 	"strings"
 
@@ -14,14 +13,6 @@ import (
 	"github.com/yqchilde/wxbot/engine/pkg/static"
 	"github.com/yqchilde/wxbot/web"
 )
-
-var gptdb sqlite.DB
-
-func init() {
-	if err := sqlite.Open("data/plugins/chatgpt/chatgpt.db", &gptdb); err != nil {
-		log.Fatalf("open sqlite gptdb failed: %v", err)
-	}
-}
 
 // 跨域 middleware
 func cors() gin.HandlerFunc {
@@ -88,93 +79,6 @@ func runServer(c *Config) {
 		})
 	})
 
-	// 设置默认模型
-	r.POST("/ai/default-model/upsert/batch", func(c *gin.Context) {
-		result := gptdb.Orm.Table("defaultModel").Where("1=1").Delete(&defaultModelDTO{})
-		if result.Error != nil {
-			c.JSON(http.StatusOK, "清空数据失败")
-			return
-		}
-		var defaultModel []defaultModelDTO
-		if err := c.ShouldBindJSON(&defaultModel); err != nil {
-			c.JSON(http.StatusOK, "json数组异常")
-			return
-		}
-		result = gptdb.Orm.Table("defaultModel").Create(&defaultModel)
-		if result.Error != nil {
-			c.JSON(http.StatusOK, "保存数据失败")
-			return
-		}
-		c.JSON(http.StatusOK, "更新成功")
-	})
-	// 设置模型
-	r.POST("/ai/model/upsert/batch", func(c *gin.Context) {
-		result := gptdb.Orm.Table("gptmodel").Where("1=1").Delete(&gptModelDTO{})
-		if result.Error != nil {
-			c.JSON(http.StatusOK, "清空数据失败")
-			return
-		}
-		var gptModel []gptModelDTO
-		if err := c.ShouldBindJSON(&gptModel); err != nil {
-			c.JSON(http.StatusOK, "json数组异常")
-			return
-		}
-		result = gptdb.Orm.Table("gptmodel").Create(&gptModel)
-		if result.Error != nil {
-			c.JSON(http.StatusOK, "保存数据失败")
-			return
-		}
-		c.JSON(http.StatusOK, "更新成功")
-	})
-	// 获取模型列表
-	r.GET("/ai/model/list", func(c *gin.Context) {
-		var gptModel []gptModelDTO
-		if err := gptdb.Orm.Table("gptmodel").Find(&gptModel).Error; err != nil {
-			c.JSON(http.StatusOK, "获取数据失败")
-			return
-		}
-		c.JSON(http.StatusOK, gptModel)
-	})
-
-	// 获取默认模型列表
-	r.GET("/ai/default-model/list", func(c *gin.Context) {
-		var gptModel []defaultModelDTO
-		if err := gptdb.Orm.Table("defaultModel").Find(&gptModel).Error; err != nil {
-			c.JSON(http.StatusOK, "获取数据失败")
-			return
-		}
-		c.JSON(http.StatusOK, gptModel)
-	})
-	// 更新用户模型列表
-	r.POST("/ai/user-model/upsert/batch", func(c *gin.Context) {
-		result := gptdb.Orm.Table("userChatModelMapping").Where("1=1").Delete(&userChatModelMappingDTO{})
-		if result.Error != nil {
-			c.JSON(http.StatusOK, "清空数据失败")
-			return
-		}
-		var userModel []userChatModelMappingDTO
-		if err := c.ShouldBindJSON(&userModel); err != nil {
-			c.JSON(http.StatusOK, "json数组异常")
-			return
-		}
-		result = gptdb.Orm.Table("userChatModelMapping").Create(&userModel)
-		if result.Error != nil {
-			c.JSON(http.StatusOK, "保存数据失败")
-			return
-		}
-		c.JSON(http.StatusOK, "更新成功")
-	})
-
-	// 获取用户模型列表
-	r.GET("/ai/user-model/list", func(c *gin.Context) {
-		var userModel []userChatModelMappingDTO
-		if err := gptdb.Orm.Table("userChatModelMapping").Find(&userModel).Error; err != nil {
-			c.JSON(http.StatusOK, "获取数据失败")
-			return
-		}
-		c.JSON(http.StatusOK, userModel)
-	})
-
 	// no route
 	r.NoRoute(func(c *gin.Context) {
 		c.FileFromFS("/", static.EmbedFolder(web.Web, "dist"))
@@ -188,30 +92,4 @@ func runServer(c *Config) {
 	if err := r.Run(fmt.Sprintf(":%d", c.ServerPort)); err != nil {
 		log.Fatalf("[robot] WxBot回调服务启动失败, error: %v", err)
 	}
-}
-
-// gptModelDTO 表名:gptmodel，存放gpt模型相关配置参数 name唯一
-type gptModelDTO struct {
-	Model            string  `gorm:"column:model" json:"model"`
-	Name             string  `gorm:"column:name" json:"name"`
-	MaxTokens        int     `gorm:"column:max_tokens" json:"maxTokens"`
-	Temperature      float64 `gorm:"column:temperature" json:"temperature"`
-	TopP             float64 `gorm:"column:top_p" json:"topP"`
-	PresencePenalty  float64 `gorm:"column:presence_penalty" json:"presencePenalty"`
-	FrequencyPenalty float64 `gorm:"column:frequency_penalty" json:"frequencyPenalty"`
-	ImageSize        string  `gorm:"column:image_size" json:"imageSize"`
-	Type             string  `gorm:"column:type" json:"type"`
-}
-
-// userChatModelMappingDTO 表名：userChatModelMapping 存放聊天人与模型映射关系
-type userChatModelMappingDTO struct {
-	ModelName string `gorm:"column:model_name"`
-	Uid       string `gorm:"column:uid"`
-	Type      string `gorm:"column:type"`
-}
-
-// defaultModelDTO 表名:defaultModel 存放默认模型关系
-type defaultModelDTO struct {
-	ModelName string `gorm:"model_name" json:"modelName"`
-	Type      string `gorm:"type" json:"type"` // TEXT/IMAGE/TTS
 }

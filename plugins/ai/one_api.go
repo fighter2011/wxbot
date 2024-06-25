@@ -157,3 +157,46 @@ func getAiModel(uid, supportType string) (*AIModel, error) {
 	}
 	return &aiModel, nil
 }
+
+// AskAIWithImage 向ChatGPT请求回复图片
+func AskAIWithImage(ctx *robot.Ctx, prompt string, delay ...time.Duration) (b64 string, err error) {
+	// 获取客户端
+	if aiClient == nil {
+		aiClient, err = getAiClient()
+		if err != nil {
+			return "", err
+		}
+	}
+	aiModel, err := getAiModel(ctx.Uid(), "IMAGE")
+	if err != nil {
+		return "", err
+	}
+
+	// 延迟请求
+	if len(delay) > 0 {
+		time.Sleep(delay[0])
+	}
+
+	resp, err := aiClient.CreateImage(context.Background(), openai.ImageRequest{
+		Prompt:         prompt,
+		Size:           aiModel.ImageSize,
+		ResponseFormat: openai.CreateImageResponseFormatB64JSON,
+	})
+	// 处理响应回来的错误
+	if err != nil {
+		if strings.Contains(err.Error(), "Please reduce your prompt") || strings.Contains(err.Error(), "Please reduce the length of the messages") {
+			return "", ErrMaxTokens
+		}
+		if strings.Contains(err.Error(), "Incorrect API key") {
+			return "", ErrIncorrectKey
+		}
+		if strings.Contains(err.Error(), "invalid character") {
+			return "", ErrServiceUnavailable
+		}
+		return "", err
+	}
+	if len(resp.Data) == 0 {
+		return "", ErrServiceUnavailable
+	}
+	return resp.Data[0].B64JSON, nil
+}

@@ -85,12 +85,12 @@ func init() {
 			roomCtx.LoadAndDelete(room.id)
 			ctx.ReplyTextAndAt("已清空和您的上下文会话")
 			return
-		//case strings.HasPrefix(msg, "提问"):
-		//setSingleCommand(ctx, msg, "提问")
-		//return
+		case strings.HasPrefix(msg, "提问"):
+			setSingleCommand(ctx, msg, "提问")
+			return
 		//case strings.HasPrefix(msg, "作画"):
-		//setImageCommand(ctx, msg, "作画")
-		//return
+		//	setImageCommand(ctx, msg, "作画")
+		//	return
 		case strings.TrimSpace(msg) == "角色列表":
 			setRoleCommand(ctx, msg, "角色列表")
 			return
@@ -106,11 +106,15 @@ func init() {
 		case strings.HasPrefix(msg, "切换角色"):
 			setRoleCommand(ctx, msg, "切换角色")
 			return
-			//case strings.HasPrefix(msg, "模型列表"):
-			//	return
-			//case strings.HasPrefix(msg, "切换模型"):
-			//	//changeModel(ctx, msg)
-			//	return
+		case strings.HasPrefix(msg, "模型列表"):
+			setModelCommand(ctx, msg, "模型列表")
+			return
+		case strings.HasPrefix(msg, "切换模型"):
+			setModelCommand(ctx, msg, "切换模型")
+			return
+		case strings.HasPrefix(msg, "当前模型"):
+			setModelCommand(ctx, msg, "当前模型")
+			return
 		}
 
 		//正式处理开始
