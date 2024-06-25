@@ -26,3 +26,9 @@ framework:
   apiUrl: "https://wx.h.zmlz.net"
   # VX框架HTTP鉴权Token (Dean目前没有，vlw需要)
   apiToken: ""
+
+# redis配置
+redis:
+    addr: "localhost:6379"
+    db: 2
+    poolSize: 10

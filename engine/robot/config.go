@@ -19,7 +19,13 @@ type Config struct {
 		ApiToken string `mapstructure:"apiToken"` // 接入框架API Token
 	} `mapstructure:"framework"`
 
-	connHookStatus bool `mapstructure:"-"` // 连接Hook框架状态
+	connHookStatus bool     `mapstructure:"-"` // 连接Hook框架状态
+	Redis          struct { // redis配置
+		Addr     string `mapstructure:"addr"`
+		DB       int    `mapstructure:"db"`
+		Password string `mapstructure:"password"`
+		PoolSize int    `mapstructure:"poolSize"`
+	}
 }
 
 // NewConfig 创建默认配置
