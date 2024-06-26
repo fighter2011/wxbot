@@ -52,17 +52,23 @@ func setModelCommand(ctx *robot.Ctx, msg string, command string) {
 			return
 		}
 		redisKey := fmt.Sprintf(AI_USER_MODEL_PREFIX_KEY, ctx.Uid(), "TEXT")
+		flag := false
 		for _, m := range aiModels {
-			if modelName == m.Model {
+			if modelName == m.Name {
 				data, err := json.Marshal(m)
 				if err != nil {
 					ctx.ReplyTextAndAt("切换模型失败")
 					return
 				}
 				if redis.Set(redisKey, string(data)) {
+					flag = true
 					ctx.ReplyTextAndAt("切换模型成功")
+					return
 				}
 			}
+		}
+		if flag {
+			ctx.ReplyTextAndAt("模型不存在")
 		}
 	case "当前模型":
 		redisKey := fmt.Sprintf(AI_USER_MODEL_PREFIX_KEY, ctx.Uid(), "TEXT")
