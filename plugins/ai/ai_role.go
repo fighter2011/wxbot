@@ -58,7 +58,7 @@ func setRoleCommand(ctx *robot.Ctx, msg string, command string) {
 			ctx.ReplyTextAndAt("角色存在")
 			return
 		}
-		if redis.HSet(AI_ROLE_KEY, role, desc) {
+		if !redis.HSet(AI_ROLE_KEY, role, desc) {
 			ctx.ReplyTextAndAt("创建角色失败")
 			return
 		}
