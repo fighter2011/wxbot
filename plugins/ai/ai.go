@@ -118,7 +118,7 @@ func init() {
 		}
 
 		//正式处理开始
-		if c, ok := roomCtx.Load(msg); ok {
+		if c, ok := roomCtx.Load(room.id); ok {
 			// 判断距离上次聊天是否超过10分钟了
 			if now.Sub(c.(Room).chatTime) > 10*time.Minute {
 				roomCtx.LoadAndDelete(room.id)
