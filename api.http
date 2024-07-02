@@ -154,8 +154,7 @@ POST https://wx.h.zmlz.net/api/v1/robot/callback/config/update
 Content-Type: application/json
 
 {
-  //  "host": "http://wxbot:9528",
-  "host": "https://api.h.zmlz.net",
+    "host": "http://wxbot:9528",
   "msgCallbackPath": "/wxbot/callback"
 }
 

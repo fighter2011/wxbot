@@ -6,6 +6,7 @@ import (
 	"github.com/yqchilde/wxbot/engine/pkg/redis"
 	"github.com/yqchilde/wxbot/engine/robot"
 	"regexp"
+	"time"
 )
 
 // 设置模型相关指令
@@ -52,7 +53,6 @@ func setModelCommand(ctx *robot.Ctx, msg string, command string) {
 			return
 		}
 		redisKey := fmt.Sprintf(AI_USER_MODEL_PREFIX_KEY, ctx.Uid(), "TEXT")
-		flag := false
 		for _, m := range aiModels {
 			if modelName == m.Name {
 				data, err := json.Marshal(m)
@@ -60,16 +60,15 @@ func setModelCommand(ctx *robot.Ctx, msg string, command string) {
 					ctx.ReplyTextAndAt("切换模型失败")
 					return
 				}
-				if redis.Set(redisKey, string(data)) {
-					flag = true
+				if redis.SetEX(redisKey, string(data), time.Hour*24) {
 					ctx.ReplyTextAndAt("切换模型成功")
+					// 清除上下文
+					roomCtx.LoadAndDelete(ctx.Uid())
 					return
 				}
 			}
 		}
-		if flag {
-			ctx.ReplyTextAndAt("模型不存在")
-		}
+		ctx.ReplyTextAndAt("模型不存在")
 	case "当前模型":
 		redisKey := fmt.Sprintf(AI_USER_MODEL_PREFIX_KEY, ctx.Uid(), "TEXT")
 		var aiModel AIModel

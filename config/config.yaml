@@ -32,3 +32,6 @@ redis:
     addr: "localhost:6379"
     db: 2
     poolSize: 10
+
+oneapi:
+    host: "https://oneapi.h.zmlz.net"

@@ -26,6 +26,9 @@ type Config struct {
 		Password string `mapstructure:"password"`
 		PoolSize int    `mapstructure:"poolSize"`
 	}
+	Oneapi struct {
+		Host string `mapstructure:"host"`
+	}
 }
 
 // NewConfig 创建默认配置

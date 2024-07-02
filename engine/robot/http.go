@@ -1,7 +1,10 @@
 package robot
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/sashabaranov/go-openai"
+	"github.com/yqchilde/wxbot/engine/pkg/redis"
 	"net/http"
 	"strings"
 
@@ -12,6 +15,13 @@ import (
 	"github.com/yqchilde/wxbot/engine/pkg/net"
 	"github.com/yqchilde/wxbot/engine/pkg/static"
 	"github.com/yqchilde/wxbot/web"
+)
+
+const (
+	AI_PROXY_KEY             string = "ai:one-api:proxy"
+	AI_MODEL_KEY             string = "ai:model:list"
+	AI_USER_MODEL_PREFIX_KEY string = "ai:model:user:%s:%s" // 用户model映射key accountId + supportType
+	AI_ROLE_KEY              string = "ai:role:list"
 )
 
 // 跨域 middleware
@@ -79,6 +89,37 @@ func runServer(c *Config) {
 		})
 	})
 
+	r.GET("/wxbot/ai/model/list", func(c *gin.Context) {
+		var aiModels []AIModel
+		if f, res := redis.Get(AI_MODEL_KEY); f {
+			if err := json.Unmarshal([]byte(res), &aiModels); err != nil {
+				c.JSON(http.StatusOK, gin.H{})
+				return
+			}
+			c.JSON(http.StatusOK, gin.H{"data": aiModels})
+			return
+		}
+		c.JSON(http.StatusOK, gin.H{})
+		return
+	})
+
+	r.POST("/wxbot/ai/model/upsert/batch", func(c *gin.Context) {
+		var aiModels []AIModel
+		if err := c.ShouldBindJSON(&aiModels); err != nil {
+			c.JSON(http.StatusOK, "json数组异常")
+			return
+		}
+		data, err := json.Marshal(&aiModels)
+		if err != nil {
+			c.JSON(http.StatusOK, "json数组异常")
+			return
+		}
+		if flag := redis.Set(AI_MODEL_KEY, string(data)); flag {
+			c.JSON(http.StatusOK, "设置模型成功")
+			return
+		}
+	})
+
 	// no route
 	r.NoRoute(func(c *gin.Context) {
 		c.FileFromFS("/", static.EmbedFolder(web.Web, "dist"))
@@ -92,4 +133,19 @@ func runServer(c *Config) {
 	if err := r.Run(fmt.Sprintf(":%d", c.ServerPort)); err != nil {
 		log.Fatalf("[robot] WxBot回调服务启动失败, error: %v", err)
 	}
+}
+
+type AIModel struct {
+	Model            string            `json:"model"` // model
+	Name             string            `json:"name"`  // 展示名称 仅展示
+	MaxTokens        int               `json:"maxTokens"`
+	Temperature      float32           `json:"temperature"`
+	TopP             float32           `json:"topP"`
+	PresencePenalty  float32           `json:"presencePenalty"`
+	FrequencyPenalty float32           `json:"frequencyPenalty"`
+	ImageSize        string            `json:"imageSize"`
+	ToolCalls        []openai.ToolCall `json:"toolCalls"` // 冗余 等simple-one-api支持
+	ToolCallID       string            `json:"toolCallID"`
+	SupportType      string            `json:"supportType"` // 支持类型 TEXT/IMAGE/TTS
+	IsDefault        bool              `json:"isDefault"`   // 默认类型
 }
